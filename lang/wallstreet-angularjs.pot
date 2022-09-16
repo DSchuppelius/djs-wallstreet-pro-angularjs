@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DJS-Wallstreet-Pro AngularJS\n"
-"POT-Creation-Date: 2022-09-16 11:44+0200\n"
+"POT-Creation-Date: 2022-09-16 13:46+0200\n"
 "PO-Revision-Date: 2022-09-16 11:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,82 +16,106 @@ msgstr ""
 "X-Poedit-WPHeader: angular.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: angular.php:45 angular.php:53
+#: angular.php:46 angular.php:54
 msgid "AngularJS options"
 msgstr ""
 
-#: angular.php:68
+#: angular.php:69
 msgid "Enable AngularJS"
 msgstr ""
 
-#: angular.php:72
+#: angular.php:73
 msgid ""
 "If enabled the following and enabled features are also taken into account"
 msgstr ""
 
-#: angular.php:83
+#: angular.php:84
+msgid "Select version of AngularJS"
+msgstr ""
+
+#: angular.php:88
+msgid "Version 1.2.32"
+msgstr ""
+
+#: angular.php:89
+msgid "Version 1.8.2"
+msgstr ""
+
+#: angular.php:102
 msgid "Enable AngularJS Locale"
 msgstr ""
 
-#: angular.php:96
+#: angular.php:115
 msgid "Language"
 msgstr ""
 
-#: angular.php:111
+#: angular.php:130
 msgid "Enable AngularJS Animate"
 msgstr ""
 
-#: angular.php:125
+#: angular.php:144
 msgid "Enable AngularJS Aria"
 msgstr ""
 
-#: angular.php:139
+#: angular.php:158
 msgid "Enable AngularJS Cookies"
 msgstr ""
 
-#: angular.php:153
+#: angular.php:172
 msgid "Enable AngularJS Loader"
 msgstr ""
 
-#: angular.php:167
+#: angular.php:186
 msgid "Enable AngularJS Message"
 msgstr ""
 
-#: angular.php:181
+#: angular.php:200
 msgid "Enable AngularJS Messageformat"
 msgstr ""
 
-#: angular.php:195
+#: angular.php:214
 msgid "Enable AngularJS Mocks"
 msgstr ""
 
-#: angular.php:210
+#: angular.php:229
 msgid "Enable AngularJS Parse Extension"
 msgstr ""
 
-#: angular.php:224
+#: angular.php:243
 msgid "Enable AngularJS Resource"
 msgstr ""
 
-#: angular.php:238
+#: angular.php:257
 msgid "Enable AngularJS Route"
 msgstr ""
 
-#: angular.php:252
+#: angular.php:271
 msgid "Enable AngularJS Sanitize"
 msgstr ""
 
-#: angular.php:266
+#: angular.php:285
+msgid "Enable AngularJS Scenario"
+msgstr ""
+
+#: angular.php:289
+msgid "Only in Version 1.2.32"
+msgstr ""
+
+#: angular.php:300
 msgid "Enable AngularJS Touch"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "DJS-Wallstreet-Pro AngularJS"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/DSchuppelius/djs-wallstreet-angularjs"
 msgstr ""
 
 #. Description of the plugin/theme
