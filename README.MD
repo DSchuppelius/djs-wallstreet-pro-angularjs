@@ -13,4 +13,4 @@
 
 ## Description
 
-A Plugin to load ANgualrJS-Script Files
+A Plugin to load AngularJS-Script Files on Wordpress
