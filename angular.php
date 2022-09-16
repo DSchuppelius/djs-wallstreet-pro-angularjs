@@ -4,7 +4,7 @@ Plugin Name: DJS-Wallstreet-Pro AngularJS
 Plugin URI: https://github.com/DSchuppelius/djs-wallstreet-angularjs
 Update URI: https://github.com/DSchuppelius/djs-wallstreet-angularjs/releases/latest/
 Description: Adds AngularJS-Options to Theme-Customizer
-Version: 1.0.0
+Version: 1.1.0
 Author: Daniel Joerg Schuppelius
 Author URI: https://schuppelius.org
 License: GNU General Public License v3 or later
