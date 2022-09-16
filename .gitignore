@@ -1,0 +1,6 @@
+# Ignore IDE folders
+.vs/
+
+# Ignore IDE files
+.editorconfig
+.prettierrc
