@@ -3,7 +3,7 @@
     align-items: stretch;
     transition: all 1.5s ease;
     position: fixed;
-    top: 390px;
+    top: 30%;
     right: -175px;
     max-width: 200px;
     z-index: 901;
