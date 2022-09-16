@@ -39,15 +39,20 @@
     font-size: 20px;
     background: var(--theme-color);
     padding: 20px 5px 20px 0px;
-    border: none !important;
-    text-decoration: none !important;
-    box-shadow: none !important;
+    border: none;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.btn_pos>button>i {
+    display: flex;
+    align-items: center;
 }
 
 .btn_pos button:hover,
 .btn_pos .btn:hover {
     color: #ffffff;
-    background: #1570B9;
+    box-shadow: inset 60px 75px 100px 10px rgb(0 0 0 / 25%);
     text-decoration: none;
 }
 
@@ -62,5 +67,5 @@
     width: 5px;
     margin-left: -5px;
     line-height: 210px;
-    box-shadow: none !important;
+    box-shadow: none;
 }
