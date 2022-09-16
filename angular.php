@@ -71,6 +71,24 @@ class Wallstreet_Pro_AngularJS
             "description" => __("If enabled the following and enabled features are also taken into account", "wallstreet"),
         ]);
 
+        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angularjs_version]", [
+            "default" => '1.8.2',
+            "capability" => "edit_theme_options",
+            "sanitize_callback" => "sanitize_text_field",
+            "type" => "option",
+        ]);
+
+        $wp_customize->add_control("wallstreet_pro_angularjs_options[angularjs_version]", [
+            "label" => __("Select version of AngularJS", "wallstreet"),
+            "section" => "angular_section_settings",
+            "type" => "select",
+            'choices' => [
+                '1.2.32' => __('Version 1.2.32'),
+                '1.8.2' => __('Version 1.8.2'),
+            ],
+            "priority" => 100,
+        ]);
+
         $wp_customize->add_setting("wallstreet_pro_angularjs_options[angularjslocal_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
@@ -114,7 +132,7 @@ class Wallstreet_Pro_AngularJS
         ]);
 
         $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_aria_enabled]", [
-            "default" => true,
+            "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
@@ -142,7 +160,7 @@ class Wallstreet_Pro_AngularJS
         ]);
 
         $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_loader_enabled]", [
-            "default" => true,
+            "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
@@ -156,7 +174,7 @@ class Wallstreet_Pro_AngularJS
         ]);
 
         $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_messages_enabled]", [
-            "default" => true,
+            "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
@@ -170,7 +188,7 @@ class Wallstreet_Pro_AngularJS
         ]);
 
         $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_message_format_enabled]", [
-            "default" => true,
+            "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
@@ -184,7 +202,7 @@ class Wallstreet_Pro_AngularJS
         ]);
 
         $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_mocks_enabled]", [
-            "default" => true,
+            "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
@@ -199,7 +217,7 @@ class Wallstreet_Pro_AngularJS
 
 
         $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_parse_ext_enabled]", [
-            "default" => true,
+            "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
@@ -213,7 +231,7 @@ class Wallstreet_Pro_AngularJS
         ]);
 
         $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_resource_enabled]", [
-            "default" => true,
+            "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
@@ -241,7 +259,7 @@ class Wallstreet_Pro_AngularJS
         ]);
 
         $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_sanitize_enabled]", [
-            "default" => true,
+            "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
@@ -254,8 +272,23 @@ class Wallstreet_Pro_AngularJS
             "priority" => 100,
         ]);
 
+        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_scenario_enabled]", [
+            "default" => false,
+            "capability" => "edit_theme_options",
+            "sanitize_callback" => "sanitize_text_field",
+            "type" => "option",
+        ]);
+
+        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_scenario_enabled]", [
+            "label" => __("Enable AngularJS Scenario", "wallstreet"),
+            "section" => "angular_section_settings",
+            "type" => "checkbox",
+            "priority" => 100,
+            "description" => __("Only in Version 1.2.32", "wallstreet"),
+        ]);
+
         $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_touch_enabled]", [
-            "default" => true,
+            "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
@@ -273,6 +306,7 @@ class Wallstreet_Pro_AngularJS
     {
         return [
             "angularjs_enabled" => true,
+            "angularjs_version" => "1.8.2",
             "angularjslocal_enabled" => true,
             "angularjslocal" => strtolower(get_locale()),
             "angular_animate_enabled" => true,
@@ -286,6 +320,7 @@ class Wallstreet_Pro_AngularJS
             "angular_resource_enabled" => false,
             "angular_route_enabled" => true,
             "angular_sanitize_enabled" => false,
+            "angular_scenario_enabled" => false,
             "angular_touch_enabled" => false,
         ];
     }
@@ -301,45 +336,48 @@ class Wallstreet_Pro_AngularJS
         $current_options = $this->get_current_options();
 
         if ($current_options["angularjs_enabled"]) {
-            wp_enqueue_script("angularjs",                      ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular.min.js");
+            wp_enqueue_script("angularjs",                      ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular.min.js");
             if ($current_options["angularjslocal_enabled"]) {
-                wp_enqueue_script("angularjs-local",            ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/i18n/angular-locale_" . str_replace("_", "-", $current_options["angularjslocal"]) . ".js");
+                wp_enqueue_script("angularjs-local",            ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . str_replace("_", "-", $current_options["angularjslocal"]) . ".js");
             }
             if ($current_options["angular_animate_enabled"]) {
-                wp_enqueue_script("angularjs-animate",          ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-animate.min.js");
+                wp_enqueue_script("angularjs-animate",          ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-animate.min.js");
             }
             if ($current_options["angular_aria_enabled"]) {
-                wp_enqueue_script("angularjs-aria",             ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-aria.min.js");
+                wp_enqueue_script("angularjs-aria",             ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-aria.min.js");
             }
             if ($current_options["angular_cookies_enabled"]) {
-                wp_enqueue_script("angularjs-cookies",          ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-cookies.min.js");
+                wp_enqueue_script("angularjs-cookies",          ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-cookies.min.js");
             }
             if ($current_options["angular_loader_enabled"]) {
-                wp_enqueue_script("angularjs-loader",           ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-loader.min.js");
+                wp_enqueue_script("angularjs-loader",           ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-loader.min.js");
             }
             if ($current_options["angular_messages_enabled"]) {
-                wp_enqueue_script("angularjs-messages",         ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-messages.min.js");
+                wp_enqueue_script("angularjs-messages",         ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-messages.min.js");
             }
             if ($current_options["angular_message_format_enabled"]) {
-                wp_enqueue_script("angularjs-message-format",   ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-message-format.min.js");
+                wp_enqueue_script("angularjs-message-format",   ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-message-format.min.js");
             }
             if ($current_options["angular_mocks_enabled"]) {
-                wp_enqueue_script("angularjs-mocks",            ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-mocks.js");
+                wp_enqueue_script("angularjs-mocks",            ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-mocks.js");
             }
             if ($current_options["angular_parse_ext_enabled"]) {
-                wp_enqueue_script("angularjs-parse-ext",        ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-parse-ext.min.js");
+                wp_enqueue_script("angularjs-parse-ext",        ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-parse-ext.min.js");
             }
             if ($current_options["angular_resource_enabled"]) {
-                wp_enqueue_script("angularjs-resource",         ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-resource.min.js");
+                wp_enqueue_script("angularjs-resource",         ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-resource.min.js");
             }
             if ($current_options["angular_route_enabled"]) {
-                wp_enqueue_script("angularjs-route",            ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-route.min.js");
+                wp_enqueue_script("angularjs-route",            ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-route.min.js");
             }
             if ($current_options["angular_sanitize_enabled"]) {
-                wp_enqueue_script("angularjs-sanitize",         ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-sanitize.min.js");
+                wp_enqueue_script("angularjs-sanitize",         ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-sanitize.min.js");
+            }
+            if ($current_options["angular_scenario_enabled"]) {
+                wp_enqueue_script("angularjs-scenario",         ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.2.32/angular-scenario.js");
             }
             if ($current_options["angular_touch_enabled"]) {
-                wp_enqueue_script("angularjs-touch",            ANGULAR_ASSETS_PATH_URI . "/js/angularjs/1.8.2/angular-touch.min.js");
+                wp_enqueue_script("angularjs-touch",            ANGULAR_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-touch.min.js");
             }
         }
     }
