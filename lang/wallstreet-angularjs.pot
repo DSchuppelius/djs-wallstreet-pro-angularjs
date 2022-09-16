@@ -1,0 +1,107 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: DJS-Wallstreet-Pro AngularJS\n"
+"POT-Creation-Date: 2022-09-16 11:44+0200\n"
+"PO-Revision-Date: 2022-09-16 11:44+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"X-Generator: Poedit 3.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: angular.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: angular.php:45 angular.php:53
+msgid "AngularJS options"
+msgstr ""
+
+#: angular.php:68
+msgid "Enable AngularJS"
+msgstr ""
+
+#: angular.php:72
+msgid ""
+"If enabled the following and enabled features are also taken into account"
+msgstr ""
+
+#: angular.php:83
+msgid "Enable AngularJS Locale"
+msgstr ""
+
+#: angular.php:96
+msgid "Language"
+msgstr ""
+
+#: angular.php:111
+msgid "Enable AngularJS Animate"
+msgstr ""
+
+#: angular.php:125
+msgid "Enable AngularJS Aria"
+msgstr ""
+
+#: angular.php:139
+msgid "Enable AngularJS Cookies"
+msgstr ""
+
+#: angular.php:153
+msgid "Enable AngularJS Loader"
+msgstr ""
+
+#: angular.php:167
+msgid "Enable AngularJS Message"
+msgstr ""
+
+#: angular.php:181
+msgid "Enable AngularJS Messageformat"
+msgstr ""
+
+#: angular.php:195
+msgid "Enable AngularJS Mocks"
+msgstr ""
+
+#: angular.php:210
+msgid "Enable AngularJS Parse Extension"
+msgstr ""
+
+#: angular.php:224
+msgid "Enable AngularJS Resource"
+msgstr ""
+
+#: angular.php:238
+msgid "Enable AngularJS Route"
+msgstr ""
+
+#: angular.php:252
+msgid "Enable AngularJS Sanitize"
+msgstr ""
+
+#: angular.php:266
+msgid "Enable AngularJS Touch"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "DJS-Wallstreet-Pro AngularJS"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Adds AngularJS-Options to Theme-Customizer"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Daniel Joerg Schuppelius"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://schuppelius.org"
+msgstr ""

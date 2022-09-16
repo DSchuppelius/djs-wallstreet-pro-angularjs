@@ -1,0 +1,104 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DJS-Wallstreet-Pro AngularJS\n"
+"POT-Creation-Date: 2022-09-16 11:44+0200\n"
+"PO-Revision-Date: 2022-09-16 11:45+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: angular.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: angular.php:45 angular.php:53
+msgid "AngularJS options"
+msgstr "AngularJS-Optionen"
+
+#: angular.php:68
+msgid "Enable AngularJS"
+msgstr "AngularJS aktivieren"
+
+#: angular.php:72
+msgid "If enabled the following and enabled features are also taken into account"
+msgstr "Wenn diese Option aktiviert ist, werden auch die folgenden und aktivierten Funktionen berücksichtigt"
+
+#: angular.php:83
+msgid "Enable AngularJS Locale"
+msgstr "AngularJS-Gebietsschema aktivieren"
+
+#: angular.php:96
+msgid "Language"
+msgstr "Sprache"
+
+#: angular.php:111
+msgid "Enable AngularJS Animate"
+msgstr "AngularJS-Animate aktivieren"
+
+#: angular.php:125
+msgid "Enable AngularJS Aria"
+msgstr "AngularJS-Aria aktivieren"
+
+#: angular.php:139
+msgid "Enable AngularJS Cookies"
+msgstr "AngularJS-Cookies aktivieren"
+
+#: angular.php:153
+msgid "Enable AngularJS Loader"
+msgstr "AngularJS-Loader aktivieren"
+
+#: angular.php:167
+msgid "Enable AngularJS Message"
+msgstr "AngularJS-Message aktivieren"
+
+#: angular.php:181
+msgid "Enable AngularJS Messageformat"
+msgstr "AngularJS-Messageformat aktivieren"
+
+#: angular.php:195
+msgid "Enable AngularJS Mocks"
+msgstr "AngularJS-Mocks aktivieren"
+
+#: angular.php:210
+msgid "Enable AngularJS Parse Extension"
+msgstr "AngularJS-Parse-Erweiterung aktivieren"
+
+#: angular.php:224
+msgid "Enable AngularJS Resource"
+msgstr "AngularJS-Ressource aktivieren"
+
+#: angular.php:238
+msgid "Enable AngularJS Route"
+msgstr "AngularJS-Route aktivieren"
+
+#: angular.php:252
+msgid "Enable AngularJS Sanitize"
+msgstr "AngularJS-Sanitize aktivieren"
+
+#: angular.php:266
+msgid "Enable AngularJS Touch"
+msgstr "AngularJS-Touch aktivieren"
+
+#. Plugin Name of the plugin/theme
+msgid "DJS-Wallstreet-Pro AngularJS"
+msgstr "DJS-Wallstreet-Pro AngularJS"
+
+#. Description of the plugin/theme
+msgid "Adds AngularJS-Options to Theme-Customizer"
+msgstr "Fügt AngularJS-Optionen zum Theme-Customizer hinzu"
+
+#. Author of the plugin/theme
+msgid "Daniel Joerg Schuppelius"
+msgstr "Daniel Jörg Schuppelius"
+
+#. Author URI of the plugin/theme
+msgid "https://schuppelius.org"
+msgstr "https://schuppelius.org/"
