@@ -294,7 +294,7 @@ class Customizer_Wallstreet_Pro_AngularJS
     {
         $current_options = get_current_angularjs_options();
 
-        if ($current_options["angularjs_enabled"]) {
+        if (!(defined("WP_ADMIN") && WP_ADMIN) && $current_options["angularjs_enabled"]) {
             wp_enqueue_script("angularjs",                      DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular.min.js");
             if ($current_options["angularjslocal_enabled"] && file_exists(DJS_ANGULARJS_PLUGIN_ASSETS_PATH . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . str_replace("_", "-", $current_options["angularjslocal"]) . ".js")) {
                 wp_enqueue_script("angularjs-locale",            DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . str_replace("_", "-", $current_options["angularjslocal"]) . ".js");
