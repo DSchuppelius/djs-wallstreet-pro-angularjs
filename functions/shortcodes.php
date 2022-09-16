@@ -1,4 +1,13 @@
 <?php
+/*
+ * Created on   : Fri Sep 16 2022
+ * Author       : Daniel Jörg Schuppelius
+ * Author Uri   : https://schuppelius.org
+ * Filename     : shortcodes.php
+ * License      : GNU General Public License v3 or later
+ * License Uri  : http://www.gnu.org/licenses/gpl.html
+ */
+
 // The [ng-app name="my-app" class="class"] shortcode
 function angluarapp_div($atts, $content = null)
 {

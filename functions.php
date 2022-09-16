@@ -1,6 +1,6 @@
 <?php
 /*
- * Created on   : Wed Jun 22 2022
+ * Created on   : Fri Sep 16 2022
  * Author       : Daniel Jörg Schuppelius
  * Author Uri   : https://schuppelius.org
  * Filename     : functions.php
@@ -18,4 +18,6 @@ require_once DJS_ANGULARJS_PLUGIN_DIR . "plugin_setup_data.php";
 
 require_once DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "/customizer/customizer-global.php";
 
+require_once DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "/scripts.php";
 require_once DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "/shortcodes.php";
+require_once DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "/widget-areas.php";
