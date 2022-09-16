@@ -9,8 +9,6 @@
  */
 class Customizer_Wallstreet_Pro_AngularJS
 {
-    private $custom_options;
-
     public $is_djs_wallstreet_pro_theme;
 
     public function __construct()
@@ -18,7 +16,6 @@ class Customizer_Wallstreet_Pro_AngularJS
         $wallstreet_theme = wp_get_theme("DJS-Wallstreet-Pro");
         $current_theme = wp_get_theme();
         $this->is_djs_wallstreet_pro_theme = $wallstreet_theme->Name == $current_theme->Name;
-        $this->custom_options = $this->plugin_data_setup();
 
         if ($this->is_djs_wallstreet_pro_theme)
             add_action("customize_register", [$this, "register_angularsection"]);
@@ -26,34 +23,6 @@ class Customizer_Wallstreet_Pro_AngularJS
             add_action("customize_register", [$this, "register_angularpanel"]);
 
         add_action("customize_register", [$this, "register_angularcontrols"]);
-    }
-
-    private function plugin_data_setup()
-    {
-        return [
-            "angularjs_enabled" => true,
-            "angularjs_version" => "1.8.2",
-            "angularjslocal_enabled" => true,
-            "angularjslocal" => strtolower(get_locale()),
-            "angular_animate_enabled" => true,
-            "angular_aria_enabled" => false,
-            "angular_cookies_enabled" => true,
-            "angular_loader_enabled" => false,
-            "angular_messages_enabled" => false,
-            "angular_message_format_enabled" => false,
-            "angular_mocks_enabled" => false,
-            "angular_parse_ext_enabled" => false,
-            "angular_resource_enabled" => false,
-            "angular_route_enabled" => true,
-            "angular_sanitize_enabled" => false,
-            "angular_scenario_enabled" => false,
-            "angular_touch_enabled" => false,
-        ];
-    }
-
-    private function get_current_options()
-    {
-        return wp_parse_args(get_option("wallstreet_pro_angularjs_options", []), $this->custom_options);
     }
 
     public function register_angularsection($wp_customize)
@@ -323,12 +292,12 @@ class Customizer_Wallstreet_Pro_AngularJS
 
     public function load_angular_scripts()
     {
-        $current_options = $this->get_current_options();
+        $current_options = get_current_angularjs_options();
 
         if ($current_options["angularjs_enabled"]) {
             wp_enqueue_script("angularjs",                      DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular.min.js");
-            if ($current_options["angularjslocal_enabled"]) {
-                wp_enqueue_script("angularjs-local",            DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . str_replace("_", "-", $current_options["angularjslocal"]) . ".js");
+            if ($current_options["angularjslocal_enabled"] && file_exists(DJS_ANGULARJS_PLUGIN_ASSETS_PATH . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . str_replace("_", "-", $current_options["angularjslocal"]) . ".js")) {
+                wp_enqueue_script("angularjs-locale",            DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . str_replace("_", "-", $current_options["angularjslocal"]) . ".js");
             }
             if ($current_options["angular_animate_enabled"]) {
                 wp_enqueue_script("angularjs-animate",          DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-animate.min.js");

@@ -20,6 +20,20 @@ function angluarapp_div($atts, $content = null)
 }
 add_shortcode('ng-app', 'angluarapp_div');
 
+// The [ng-locale-load locale="en-us"] shortcode
+function angluarapp_load_locale()
+{
+    $current_options = get_current_angularjs_options();
+    extract(shortcode_atts([
+        'locale'  => 'en-us',
+    ], $atts));
+    if (!empty($locale) && file_exists(DJS_ANGULARJS_PLUGIN_ASSETS_PATH . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . $locale . ".js")) {
+        wp_enqueue_script("angularjs-locale-shortcode", DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . $locale . ".js");
+    }
+}
+add_shortcode('ng-locale-load', 'angluarapp_load_locale');
+
+
 // The [ng-app-end] shortcode
 function angluarapp_end_div()
 {

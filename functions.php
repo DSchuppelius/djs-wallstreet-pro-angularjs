@@ -14,6 +14,8 @@ define("DJS_ANGULARJS_PLUGIN_ASSETS_PATH", DJS_ANGULARJS_PLUGIN_DIR . "assets");
 define("DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI", DJS_ANGULARJS_PLUGIN_DIR_URI . "assets");
 define("DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH", DJS_ANGULARJS_PLUGIN_DIR . "functions");
 
+require_once DJS_ANGULARJS_PLUGIN_DIR . "plugin_setup_data.php";
+
 require_once DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "/customizer/customizer-global.php";
 
 require_once DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "/shortcodes.php";
