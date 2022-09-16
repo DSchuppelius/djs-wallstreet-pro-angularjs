@@ -47,6 +47,8 @@
 .btn_pos>button>i {
     display: flex;
     align-items: center;
+    height: 70px;
+    width: 20px;
 }
 
 .btn_pos button:hover,
