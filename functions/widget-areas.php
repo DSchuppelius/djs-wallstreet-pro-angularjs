@@ -47,10 +47,24 @@ class Fixed_Widget_Areas
     public function load_home_widgets_fixed() { 
         $show_widget = is_front_page() ? "true" : "false"; ?>
         <script>
+            function getWidth() {
+                return Math.max(
+                    document.body.scrollWidth,
+                    document.documentElement.scrollWidth,
+                    document.body.offsetWidth,
+                    document.documentElement.offsetWidth,
+                    document.documentElement.clientWidth
+                );
+            }
             var widgetModule = angular.module('widget', [])
             widgetModule.controller('widgetController', function($scope) {
                 $scope.rcheck = <?php echo $show_widget; ?>;
                 $scope.lcheck = <?php echo $show_widget; ?>;
+                
+                if (getWidth() <= 1024) {
+                    $scope.rcheck = false;
+                    $scope.lcheck= false;
+                }
             });
         </script>
         <div ng-app="widget" ng-controller="widgetController" >
