@@ -21,33 +21,14 @@ $start_wallstreet_pro_angularjs = new Wallstreet_Pro_AngularJS();
 class Wallstreet_Pro_AngularJS
 {
     public $customizer;
+    public $widget_areas;
 
     public function __construct()
     {
         load_plugin_textdomain('wallstreet-angularjs', false, DJS_ANGULARJS_PLUGIN_DIR . "lang");
         $this->customizer = new Customizer_Wallstreet_Pro_AngularJS();
+        $this->widget_areas = new Fixed_Widget_Areas();
+
         $this->customizer->load_angular_scripts();
-
-        if (is_active_sidebar('home_right_fixed')) {
-            add_action('wp_footer', [$this, 'load_home_right_fixed']);
-        }
-    }
-
-    public function load_home_right_fixed()
-    {
-?>
-<div ng-style="!check && {'right':'-175px'} || {'right':'-4px'}" ng-app="" class="btn_pos ng-scope"
-    ng-init="check=<?php echo is_front_page() ? "true" : "false"; ?>">
-    <button ng-show="check == false;" ng-click="check = !check" class="ng-hide not">
-        <i class="material-icons"></i>
-    </button>
-    <button ng-show="check == true" ng-click="check = !check" class="not">
-        <i class="material-icons"></i>
-    </button>
-    <?php
-            dynamic_sidebar('home_right_fixed');
-            ?>
-</div>
-<?php
     }
 }

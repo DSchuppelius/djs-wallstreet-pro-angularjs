@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DJS-Wallstreet-Pro AngularJS\n"
-"POT-Creation-Date: 2022-09-16 13:46+0200\n"
-"PO-Revision-Date: 2022-09-16 13:47+0200\n"
+"POT-Creation-Date: 2022-09-18 11:18+0200\n"
+"PO-Revision-Date: 2022-09-18 11:20+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -21,98 +21,105 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: angular.php:46 angular.php:54
+#: functions/customizer/customizer-global.php:31
+#: functions/customizer/customizer-global.php:40
 msgid "AngularJS options"
 msgstr "AngularJS-Optionen"
 
-#: angular.php:69
+#: functions/customizer/customizer-global.php:55
 msgid "Enable AngularJS"
 msgstr "AngularJS aktivieren"
 
-#: angular.php:73
+#: functions/customizer/customizer-global.php:59
 msgid ""
 "If enabled the following and enabled features are also taken into account"
 msgstr ""
 "Wenn diese Option aktiviert ist, werden auch die folgenden und aktivierten "
 "Funktionen berücksichtigt"
 
-#: angular.php:84
+#: functions/customizer/customizer-global.php:70
 msgid "Select version of AngularJS"
 msgstr "Wählen Sie die Version von AngularJS"
 
-#: angular.php:88
+#: functions/customizer/customizer-global.php:74
 msgid "Version 1.2.32"
 msgstr "Version 1.2.32"
 
-#: angular.php:89
+#: functions/customizer/customizer-global.php:75
 msgid "Version 1.8.2"
 msgstr "Version 1.8.2"
 
-#: angular.php:102
+#: functions/customizer/customizer-global.php:88
 msgid "Enable AngularJS Locale"
 msgstr "AngularJS-Gebietsschema aktivieren"
 
-#: angular.php:115
+#: functions/customizer/customizer-global.php:101
 msgid "Language"
 msgstr "Sprache"
 
-#: angular.php:130
+#: functions/customizer/customizer-global.php:116
 msgid "Enable AngularJS Animate"
 msgstr "AngularJS-Animate aktivieren"
 
-#: angular.php:144
+#: functions/customizer/customizer-global.php:130
 msgid "Enable AngularJS Aria"
 msgstr "AngularJS-Aria aktivieren"
 
-#: angular.php:158
+#: functions/customizer/customizer-global.php:144
 msgid "Enable AngularJS Cookies"
 msgstr "AngularJS-Cookies aktivieren"
 
-#: angular.php:172
+#: functions/customizer/customizer-global.php:158
 msgid "Enable AngularJS Loader"
 msgstr "AngularJS-Loader aktivieren"
 
-#: angular.php:186
+#: functions/customizer/customizer-global.php:172
 msgid "Enable AngularJS Message"
 msgstr "AngularJS-Message aktivieren"
 
-#: angular.php:200
+#: functions/customizer/customizer-global.php:186
 msgid "Enable AngularJS Messageformat"
 msgstr "AngularJS-Messageformat aktivieren"
 
-#: angular.php:214
+#: functions/customizer/customizer-global.php:200
 msgid "Enable AngularJS Mocks"
 msgstr "AngularJS-Mocks aktivieren"
 
-#: angular.php:229
+#: functions/customizer/customizer-global.php:215
 msgid "Enable AngularJS Parse Extension"
 msgstr "AngularJS-Parse-Erweiterung aktivieren"
 
-#: angular.php:243
+#: functions/customizer/customizer-global.php:229
 msgid "Enable AngularJS Resource"
 msgstr "AngularJS-Ressource aktivieren"
 
-#: angular.php:257
+#: functions/customizer/customizer-global.php:243
 msgid "Enable AngularJS Route"
 msgstr "AngularJS-Route aktivieren"
 
-#: angular.php:271
+#: functions/customizer/customizer-global.php:257
 msgid "Enable AngularJS Sanitize"
 msgstr "AngularJS-Sanitize aktivieren"
 
-#: angular.php:285
-#, fuzzy
-#| msgid "Enable AngularJS Aria"
+#: functions/customizer/customizer-global.php:271
 msgid "Enable AngularJS Scenario"
-msgstr "AngularJS-Aria aktivieren"
+msgstr "AngularJS-Scenario aktivieren"
 
-#: angular.php:289
+#: functions/customizer/customizer-global.php:275
 msgid "Only in Version 1.2.32"
 msgstr "Nur in Version 1.2.32"
 
-#: angular.php:300
+#: functions/customizer/customizer-global.php:286
 msgid "Enable AngularJS Touch"
 msgstr "AngularJS-Touch aktivieren"
+
+#: functions/widget-areas.php:14
+msgid "Home right fixed-sidebar"
+msgstr "Startseite rechts fixierte Sidebar"
+
+#: functions/widget-areas.php:22
+msgid "Home left fixed-sidebar"
+msgstr "Startseite links fixierte Sidebar"
 
 #. Plugin Name of the plugin/theme
 msgid "DJS-Wallstreet-Pro AngularJS"
