@@ -13,5 +13,5 @@
 
 ## Description
 
-A Plugin to load AngularJS-Script Files on Wordpress (Latest and Legacy)
+A Plugin to load AngularJS-Script Files on Wordpress (Latest and Legacy).
 In addition, a fixed widget area is created that appears on the start page and is minimized on the subpages.
