@@ -46,6 +46,14 @@ class Fixed_Widget_Areas
 
     public function load_home_widgets_fixed() { 
         $show_widget = is_front_page() ? "true" : "false"; ?>
+        <div id="angularJSHomeWidgetID" ng-app="angularJSHomeWidget" ng-controller="widgetController" >
+            <?php if ($this->right_enabled) {
+                $this->home_right_fixed();
+            }
+            if ($this->left_enabled) {
+                $this->home_left_fixed();
+            } ?>
+        </div>
         <script>
             function getWidth() {
                 return Math.max(
@@ -56,7 +64,7 @@ class Fixed_Widget_Areas
                     document.documentElement.clientWidth
                 );
             }
-            var widgetModule = angular.module('widget', [])
+            var widgetModule = angular.module('angularJSHomeWidget', []);
             widgetModule.controller('widgetController', function($scope) {
                 $scope.rcheck = <?php echo $show_widget; ?>;
                 $scope.lcheck = <?php echo $show_widget; ?>;
@@ -66,17 +74,8 @@ class Fixed_Widget_Areas
                     $scope.lcheck= false;
                 }
             });
+            angular.element(function() { angular.bootstrap(document.getElementById("angularJSHomeWidgetID"), ['angularJSHomeWidget']); });
         </script>
-        <div ng-app="widget" ng-controller="widgetController" >
-            <?php 
-            if ($this->right_enabled) {
-                $this->home_right_fixed();
-            }
-            if ($this->left_enabled) {
-                $this->home_left_fixed();
-            }
-            ?>
-        </div>
     <?php }
 
     public function home_right_fixed() { ?>

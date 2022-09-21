@@ -288,6 +288,20 @@ class Customizer_Wallstreet_Pro_AngularJS
             "type" => "checkbox",
             "priority" => 100,
         ]);
+
+        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_uibootstrap_enabled]", [
+            "default" => true,
+            "capability" => "edit_theme_options",
+            "sanitize_callback" => "sanitize_text_field",
+            "type" => "option",
+        ]);
+
+        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_uibootstrap_enabled]", [
+            "label" => __("Enable AngularJS UI Bootstrap", "wallstreet"),
+            "section" => "angular_section_settings",
+            "type" => "checkbox",
+            "priority" => 100,
+        ]);
     }
 
     public function load_angular_scripts()
@@ -338,6 +352,10 @@ class Customizer_Wallstreet_Pro_AngularJS
             if ($current_options["angular_touch_enabled"]) {
                 wp_enqueue_script("angularjs-touch",            DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-touch.min.js");
             }
+            if ($current_options["angular_uibootstrap_enabled"]) {
+                wp_enqueue_script("angularjs-uibootstrap",      DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/ui-bootstrap-tpls-2.5.0.min.js");
+            }
+
         }
     }
 }

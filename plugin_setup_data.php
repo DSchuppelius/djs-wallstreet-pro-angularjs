@@ -19,6 +19,7 @@ function plugin_setup_data()
         "angular_sanitize_enabled" => false,
         "angular_scenario_enabled" => false,
         "angular_touch_enabled" => false,
+        "angular_uibootstrap_enabled" => true,
     ];
 }
 
