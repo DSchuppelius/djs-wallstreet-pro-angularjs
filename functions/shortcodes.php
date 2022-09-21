@@ -30,7 +30,7 @@ function angluarapp_div($atts, $content = null)
 add_shortcode('ng-app', 'angluarapp_div');
 
 // The [ng-locale-load locale="en-us"] shortcode
-function angluarapp_load_locale()
+function angluarapp_load_locale($atts)
 {
     $current_options = get_current_angularjs_options();
     extract(shortcode_atts([
