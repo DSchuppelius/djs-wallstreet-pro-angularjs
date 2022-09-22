@@ -38,7 +38,9 @@ class Fixed_Widget_Areas
     {
         $this->right_enabled = is_active_sidebar('home_right_fixed');
         $this->left_enabled = is_active_sidebar('home_left_fixed');
+    }
 
+    public function register() {
         if($this->right_enabled || $this->left_enabled) {
             add_action('wp_footer', [$this, 'load_home_widgets_fixed']);
         }

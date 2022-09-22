@@ -3,7 +3,7 @@
 ## Developing
 
 -   **Contributors:** DSchuppelius
--   **Version:** 1.2.1
+-   **Version:** 1.2.2
 -   **Requires at least:** 5.3
 -   **Tested up to:** 6.0.2
 -   **Requires PHP:** 5.6.20

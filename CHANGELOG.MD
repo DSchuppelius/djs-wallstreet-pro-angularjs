@@ -1,5 +1,7 @@
 ### Versionhistory
 
+#### Version 1.2.2:
+    1. Fix loading styles and scripts
 #### Version 1.2.1:
     1. Fix widget angularjs code for run more apps on site
     2. Fix undefined var message (atts)

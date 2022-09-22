@@ -26,9 +26,11 @@ class Wallstreet_Pro_AngularJS
     public function __construct()
     {
         load_plugin_textdomain('wallstreet-angularjs', false, DJS_ANGULARJS_PLUGIN_DIR . "lang");
+        
         $this->customizer = new Customizer_Wallstreet_Pro_AngularJS();
         $this->widget_areas = new Fixed_Widget_Areas();
 
-        $this->customizer->load_angular_scripts();
+        $this->customizer->register();
+        $this->widget_areas->register();
     }
 }
