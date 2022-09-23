@@ -48,7 +48,7 @@ class Fixed_Widget_Areas
 
     public function load_home_widgets_fixed() { 
         $show_widget = is_front_page() ? "true" : "false"; ?>
-        <div id="angularJSHomeWidgetID" ng-app="angularJSHomeWidget" ng-controller="widgetController" >
+        <div id="angularJSHomeWidgetID" ng-controller="widgetController" >
             <?php if ($this->right_enabled) {
                 $this->home_right_fixed();
             }
@@ -76,6 +76,7 @@ class Fixed_Widget_Areas
                     $scope.lcheck= false;
                 }
             });
+            
             angular.element(function() { angular.bootstrap(document.getElementById("angularJSHomeWidgetID"), ['angularJSHomeWidget']); });
         </script>
     <?php }
