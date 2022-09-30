@@ -8,7 +8,11 @@
  * License Uri  : http://www.gnu.org/licenses/gpl.html
  */
 function angularjs_plugin_styles() {
-    wp_enqueue_style("angularjs-widget-area-style", DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/css/widget-area.css");
+    if(!defined('THEME_ASSETS_PATH_URI')) {
+        wp_enqueue_style("font-awesome",                    DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/css/fonts/font-awesome/css/all.min.css");
+        wp_enqueue_style("icon_font-faces",                 DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/css/fonts/icon_font-faces.css");
+    }
+    wp_enqueue_style("angularjs-widget-area-style",         DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/css/widget-area.css");
 }
 add_action('wp_enqueue_scripts', 'angularjs_plugin_styles');
 
@@ -18,7 +22,7 @@ function angularjs_plugin_scripts() {
     if (!(defined("WP_ADMIN") && WP_ADMIN) && $current_options["angularjs_enabled"]) {
         wp_enqueue_script("angularjs",                      DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular.min.js");
         if ($current_options["angularjslocal_enabled"] && file_exists(DJS_ANGULARJS_PLUGIN_ASSETS_PATH . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . str_replace("_", "-", $current_options["angularjslocal"]) . ".js")) {
-            wp_enqueue_script("angularjs-locale",            DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . str_replace("_", "-", $current_options["angularjslocal"]) . ".js");
+            wp_enqueue_script("angularjs-locale",           DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . str_replace("_", "-", $current_options["angularjslocal"]) . ".js");
         }
         if ($current_options["angular_animate_enabled"]) {
             wp_enqueue_script("angularjs-animate",          DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/angular-animate.min.js");
