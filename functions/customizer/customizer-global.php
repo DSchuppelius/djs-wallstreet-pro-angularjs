@@ -19,26 +19,57 @@ class Customizer_Wallstreet_Pro_AngularJS
     }
 
     public function register() {
-        if ($this->is_djs_wallstreet_pro_theme)
-            add_action("customize_register", [$this, "register_angularsection"]);
-        else
+        if (!$this->is_djs_wallstreet_pro_theme) {            
             add_action("customize_register", [$this, "register_angularpanel"]);
-
+            add_action("customize_register", [$this, "register_symolicfontcontrols"]);
+        }
+        add_action("customize_register", [$this, "register_angularsection"]);
         add_action("customize_register", [$this, "register_angularcontrols"]);
     }
 
     public function register_angularpanel($wp_customize) {
-        $wp_customize->add_panel("angular_section_settings", [
+        $wp_customize->add_panel("angular_panel_settings", [
             "title" => esc_html__("AngularJS options", DJS_ANGULARJS_PLUGIN),
             "description" => "",
         ]);
     }
 
     public function register_angularsection($wp_customize) {
-        $wp_customize->add_section("angular_section_settings", [
-            "title" => esc_html__("AngularJS options", DJS_ANGULARJS_PLUGIN),
-            "panel" => "global_theme_settings",
-            "description" => "",
+        if ($this->is_djs_wallstreet_pro_theme) {
+            $wp_customize->add_section("angular_section_settings", [
+                "title" => esc_html__("AngularJS options", DJS_ANGULARJS_PLUGIN),
+                "panel" => "global_theme_settings",
+                "description" => "",
+            ]);
+        } else {
+            $wp_customize->add_section("angular_section_settings", [
+                "title" => esc_html__("AngularJS options", DJS_ANGULARJS_PLUGIN),
+                "panel" => "angular_panel_settings",
+                "description" => "",
+            ]);
+
+            $wp_customize->add_section("angularfont_section_settings", [
+                "title" => esc_html__("Font settings", DJS_ANGULARJS_PLUGIN),
+                "panel" => "angular_panel_settings",
+                "description" => "",
+            ]);
+        }
+    }
+
+    public function register_symolicfontcontrols($wp_customize) {
+        $wp_customize->add_setting("wallstreet_pro_angularjs_options[symbolfonts_enabled]", [
+            "default" => $this->is_djs_wallstreet_pro_theme,
+            "capability" => "edit_theme_options",
+            "sanitize_callback" => "sanitize_text_field",
+            "type" => "option",
+        ]);
+
+        $wp_customize->add_control("wallstreet_pro_angularjs_options[symbolfonts_enabled]", [
+            "label" => esc_html__("Load symbolic fonts", DJS_ANGULARJS_PLUGIN),
+            "section" => "angularfont_section_settings",
+            "type" => "checkbox",
+            "priority" => 100,
+            "description" => esc_html__("enable if some icons are not displayed", DJS_ANGULARJS_PLUGIN),
         ]);
     }
 

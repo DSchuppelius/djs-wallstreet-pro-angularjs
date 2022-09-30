@@ -2,6 +2,7 @@
 function plugin_setup_data()
 {
     return [
+        "symbolfonts_enabled" => false,
         "angularjs_enabled" => true,
         "angularjs_version" => "1.8.2",
         "angularjslocal_enabled" => true,
