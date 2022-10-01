@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DJS-Wallstreet-Pro AngularJS\n"
-"POT-Creation-Date: 2022-10-01 08:10+0200\n"
+"POT-Creation-Date: 2022-10-01 08:43+0200\n"
 "PO-Revision-Date: 2022-09-30 08:21+0200\n"
 "Last-Translator: Daniel Jörg Schuppelius <info@schuppelius.org>\n"
 "Language-Team: Daniel Jörg Schuppelius <info@schuppelius.org>\n"
@@ -49,100 +49,104 @@ msgstr ""
 msgid "Fixed Home Widget Background"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:84
+#: functions/customizer/customizer-global.php:82
+msgid "Fixed Home Widget Textcolor"
+msgstr ""
+
+#: functions/customizer/customizer-global.php:97
 msgid "Load symbolic fonts"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:88
+#: functions/customizer/customizer-global.php:101
 msgid "enable if some icons are not displayed"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:101
+#: functions/customizer/customizer-global.php:114
 msgid "Enable AngularJS"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:105
+#: functions/customizer/customizer-global.php:118
 msgid ""
 "If enabled the following and enabled features are also taken into account"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:116
+#: functions/customizer/customizer-global.php:129
 msgid "Select version of AngularJS"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:120
+#: functions/customizer/customizer-global.php:133
 msgid "Version 1.2.32"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:121
+#: functions/customizer/customizer-global.php:134
 msgid "Version 1.8.2"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:134
+#: functions/customizer/customizer-global.php:147
 msgid "Enable AngularJS Locale"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:147
+#: functions/customizer/customizer-global.php:160
 msgid "Language"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:162
+#: functions/customizer/customizer-global.php:175
 msgid "Enable AngularJS Animate"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:176
+#: functions/customizer/customizer-global.php:189
 msgid "Enable AngularJS Aria"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:190
+#: functions/customizer/customizer-global.php:203
 msgid "Enable AngularJS Cookies"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:204
+#: functions/customizer/customizer-global.php:217
 msgid "Enable AngularJS Loader"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:218
+#: functions/customizer/customizer-global.php:231
 msgid "Enable AngularJS Message"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:232
+#: functions/customizer/customizer-global.php:245
 msgid "Enable AngularJS Messageformat"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:246
+#: functions/customizer/customizer-global.php:259
 msgid "Enable AngularJS Mocks"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:261
+#: functions/customizer/customizer-global.php:274
 msgid "Enable AngularJS Parse Extension"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:275
+#: functions/customizer/customizer-global.php:288
 msgid "Enable AngularJS Resource"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:289
+#: functions/customizer/customizer-global.php:302
 msgid "Enable AngularJS Route"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:303
+#: functions/customizer/customizer-global.php:316
 msgid "Enable AngularJS Sanitize"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:317
+#: functions/customizer/customizer-global.php:330
 msgid "Enable AngularJS Scenario"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:321
+#: functions/customizer/customizer-global.php:334
 msgid "Only in Version 1.2.32"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:332
+#: functions/customizer/customizer-global.php:345
 msgid "Enable AngularJS Touch"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:346
+#: functions/customizer/customizer-global.php:359
 msgid "Enable AngularJS UI Bootstrap"
 msgstr ""
 
