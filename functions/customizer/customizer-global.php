@@ -15,7 +15,7 @@ class Customizer_Wallstreet_Pro_AngularJS
         $wallstreet_theme = wp_get_theme("DJS-Wallstreet-Pro");
         $current_theme = wp_get_theme();
 
-        $this->is_djs_wallstreet_pro_theme = !$wallstreet_theme->Name == $current_theme->Name;
+        $this->is_djs_wallstreet_pro_theme = $wallstreet_theme->Name == $current_theme->Name;
     }
 
     public function register() {
