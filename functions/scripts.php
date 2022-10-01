@@ -13,7 +13,12 @@ function angularjs_plugin_styles() {
         wp_enqueue_style("font-awesome",                    DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "css/fonts/font-awesome/css/all.min.css");
         wp_enqueue_style("icon_font-faces",                 DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "css/fonts/icon_font-faces.css");
     }
-    wp_enqueue_style("angularjs-widget-area-style",         DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "css/widget-area.css");
+
+    if($current_options["customcolor_enabled"] != "#cccccc") { add_action('wp_head', 'widget_colorsettings'); }
+    if($current_options["customtextcolor_enabled"] != "#ffffff") { add_action('wp_head', 'widget_textcolorsettings'); }
+
+    wp_enqueue_style("angularjs-widget-area",               DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "css/widget-area.css");
+    wp_enqueue_style("angularjs-font",                      DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "css/fonts/font.css");
 }
 add_action('wp_enqueue_scripts', 'angularjs_plugin_styles');
 
@@ -71,3 +76,31 @@ function angularjs_plugin_scripts() {
 }
 add_action('wp_enqueue_scripts', 'angularjs_plugin_scripts');
 
+
+function widget_colorsettings() {
+    $current_options = get_current_angularjs_options();
+    $widget_bgcolor = $current_options["customcolor_enabled"]; ?>
+        <style>
+            .wallstreet.fixed-widget {
+                background-color: <?php echo $widget_bgcolor; ?>;
+            }
+        </style>        
+<?php }
+
+function widget_textcolorsettings() {
+    $current_options = get_current_angularjs_options();
+    $widget_fgcolor = $current_options["customtextcolor_enabled"]; ?>
+        <style>
+            .wallstreet.fixed-widget {
+                color: <?php echo $widget_fgcolor; ?>;
+            }
+
+            .wallstreet.fixed-widget button,.wallstreet.fixed-widget button:hover {
+                color: <?php echo $widget_fgcolor; ?>;
+            }
+
+            .wallstreet.fixed-widget > div a, .wallstreet.fixed-widget > div a:hover {
+                color: <?php echo $widget_fgcolor; ?>;
+            }
+        </style>        
+<?php } ?>

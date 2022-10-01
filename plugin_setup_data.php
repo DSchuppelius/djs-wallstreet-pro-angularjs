@@ -2,6 +2,8 @@
 function plugin_setup_data()
 {
     return [
+        "customcolor_enabled" => "#cccccc",
+        "customtextcolor_enabled" => "#ffffff",
         "symbolfonts_enabled" => false,
         "angularjs_enabled" => true,
         "angularjs_version" => "1.8.2",

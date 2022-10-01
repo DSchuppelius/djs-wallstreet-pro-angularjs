@@ -15,12 +15,13 @@ class Customizer_Wallstreet_Pro_AngularJS
         $wallstreet_theme = wp_get_theme("DJS-Wallstreet-Pro");
         $current_theme = wp_get_theme();
 
-        $this->is_djs_wallstreet_pro_theme = $wallstreet_theme->Name == $current_theme->Name;
+        $this->is_djs_wallstreet_pro_theme = !$wallstreet_theme->Name == $current_theme->Name;
     }
 
     public function register() {
         if (!$this->is_djs_wallstreet_pro_theme) {            
             add_action("customize_register", [$this, "register_angularpanel"]);
+            add_action("customize_register", [$this, "register_colorpickercontrols"]);
             add_action("customize_register", [$this, "register_symolicfontcontrols"]);
         }
         add_action("customize_register", [$this, "register_angularsection"]);
@@ -54,6 +55,34 @@ class Customizer_Wallstreet_Pro_AngularJS
                 "description" => "",
             ]);
         }
+    }
+
+    public function register_colorpickercontrols($wp_customize) {
+        $wp_customize->add_setting("wallstreet_pro_angularjs_options[customcolor_enabled]", [
+            "default" => "#cccccc",
+            "capability" => "edit_theme_options",
+            "sanitize_callback" => "sanitize_text_field",
+            "type" => "option",
+        ]);
+
+        $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, "wallstreet_pro_angularjs_options[customcolor_enabled]", [
+            'label' => esc_html__('Fixed Home Widget Background', DJS_ANGULARJS_PLUGIN),
+            'section' => 'colors',
+            'settings' => 'wallstreet_pro_angularjs_options[customcolor_enabled]'
+        ]));
+
+        $wp_customize->add_setting("wallstreet_pro_angularjs_options[customtextcolor_enabled]", [
+            "default" => "#ffffff",
+            "capability" => "edit_theme_options",
+            "sanitize_callback" => "sanitize_text_field",
+            "type" => "option",
+        ]);
+
+        $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, "wallstreet_pro_angularjs_options[customtextcolor_enabled]", [
+            'label' => esc_html__('Fixed Home Widget Textcolor', DJS_ANGULARJS_PLUGIN),
+            'section' => 'colors',
+            'settings' => 'wallstreet_pro_angularjs_options[customtextcolor_enabled]'
+        ]));
     }
 
     public function register_symolicfontcontrols($wp_customize) {
