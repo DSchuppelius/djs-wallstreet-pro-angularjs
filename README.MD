@@ -1,5 +1,8 @@
 # DJS-Wallstreet-Pro AngularJS
 
+![Plugin](assets/images/screenshot.png)
+
+
 ## Developing
 
 -   **Contributors:** DSchuppelius
