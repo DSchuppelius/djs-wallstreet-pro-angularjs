@@ -37,5 +37,8 @@ add_action('init', 'djs_wallstreet_pro_angularjs_load_textdomain');
 
 require_once(DJS_ANGULARJS_PLUGIN_DIR . "plugin_setup_data.php");
 
-require_once(DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "customizer/customizer-global.php");
+require_once DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "customizer/customizer.php";
+
+require_once(DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "customizer/childs/customizer-global.php");
+
 require_once(DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "scripts.php");

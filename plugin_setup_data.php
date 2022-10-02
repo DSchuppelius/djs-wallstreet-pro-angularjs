@@ -1,6 +1,5 @@
 <?php
-function plugin_setup_data()
-{
+function plugin_setup_data() {
     return [
         "customcolor_enabled" => "#cccccc",
         "customtextcolor_enabled" => "#ffffff",
@@ -26,8 +25,7 @@ function plugin_setup_data()
     ];
 }
 
-function get_current_angularjs_options()
-{
+function get_current_angularjs_options() {
     $current_options = plugin_setup_data();
-    return wp_parse_args(get_option("wallstreet_pro_angularjs_options", []), $current_options);
+    return wp_parse_args(get_option("wallstreet_pro_options", []), $current_options);
 }

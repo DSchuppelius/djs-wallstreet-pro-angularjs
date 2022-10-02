@@ -7,35 +7,26 @@
  * License      : GNU General Public License v3 or later
  * License Uri  : http://www.gnu.org/licenses/gpl.html
  */
-class Customizer_Wallstreet_Pro_AngularJS
-{
+class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
     public $is_djs_wallstreet_pro_theme;
 
     public function __construct() {
+        parent::__construct();
         $wallstreet_theme = wp_get_theme("DJS-Wallstreet-Pro");
         $current_theme = wp_get_theme();
 
         $this->is_djs_wallstreet_pro_theme = $wallstreet_theme->Name == $current_theme->Name;
+        $this->register_panel = !$this->is_djs_wallstreet_pro_theme;
     }
 
-    public function register() {
-        if (!$this->is_djs_wallstreet_pro_theme) {            
-            add_action("customize_register", [$this, "register_angularpanel"]);
-            add_action("customize_register", [$this, "register_colorpickercontrols"]);
-            add_action("customize_register", [$this, "register_symolicfontcontrols"]);
-        }
-        add_action("customize_register", [$this, "register_angularsection"]);
-        add_action("customize_register", [$this, "register_angularcontrols"]);
-    }
-
-    public function register_angularpanel($wp_customize) {
+    public function customize_register_panel($wp_customize) {
         $wp_customize->add_panel("angular_panel_settings", [
             "title" => esc_html__("AngularJS options", DJS_ANGULARJS_PLUGIN),
             "description" => "",
         ]);
     }
 
-    public function register_angularsection($wp_customize) {
+    public function customize_register_section($wp_customize) {
         if ($this->is_djs_wallstreet_pro_theme) {
             $wp_customize->add_section("angular_section_settings", [
                 "title" => esc_html__("AngularJS options", DJS_ANGULARJS_PLUGIN),
@@ -57,60 +48,24 @@ class Customizer_Wallstreet_Pro_AngularJS
         }
     }
 
-    public function register_colorpickercontrols($wp_customize) {
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[customcolor_enabled]", [
-            "default" => "#cccccc",
-            "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
-            "type" => "option",
-        ]);
+    public function customize_register_settings_and_controls($wp_customize) {
+        if (!$this->is_djs_wallstreet_pro_theme) {            
+            $this->register_colorpickercontrols($wp_customize);
+            $this->register_symolicfontcontrols($wp_customize);
+        }
 
-        $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, "wallstreet_pro_angularjs_options[customcolor_enabled]", [
-            'label' => esc_html__('Fixed Home Widget Background', DJS_ANGULARJS_PLUGIN),
-            'section' => 'colors',
-            'settings' => 'wallstreet_pro_angularjs_options[customcolor_enabled]'
-        ]));
-
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[customtextcolor_enabled]", [
-            "default" => "#ffffff",
-            "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
-            "type" => "option",
-        ]);
-
-        $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, "wallstreet_pro_angularjs_options[customtextcolor_enabled]", [
-            'label' => esc_html__('Fixed Home Widget Textcolor', DJS_ANGULARJS_PLUGIN),
-            'section' => 'colors',
-            'settings' => 'wallstreet_pro_angularjs_options[customtextcolor_enabled]'
-        ]));
-    }
-
-    public function register_symolicfontcontrols($wp_customize) {
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[symbolfonts_enabled]", [
-            "default" => $this->is_djs_wallstreet_pro_theme,
-            "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
-            "type" => "option",
-        ]);
-
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[symbolfonts_enabled]", [
-            "label" => esc_html__("Load symbolic fonts", DJS_ANGULARJS_PLUGIN),
-            "section" => "angularfont_section_settings",
-            "type" => "checkbox",
-            "priority" => 100,
-            "description" => esc_html__("enable if some icons are not displayed", DJS_ANGULARJS_PLUGIN),
-        ]);
+        $this->register_angularcontrols($wp_customize);
     }
 
     public function register_angularcontrols($wp_customize) {
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angularjs_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angularjs_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angularjs_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angularjs_enabled]", [
             "label" => esc_html__("Enable AngularJS", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
@@ -118,14 +73,14 @@ class Customizer_Wallstreet_Pro_AngularJS
             "description" => esc_html__("If enabled the following and enabled features are also taken into account", DJS_ANGULARJS_PLUGIN),
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angularjs_version]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angularjs_version]", [
             "default" => '1.8.2',
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angularjs_version]", [
+        $wp_customize->add_control($this->theme_options_name . "[angularjs_version]", [
             "label" => esc_html__("Select version of AngularJS", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "select",
@@ -136,126 +91,126 @@ class Customizer_Wallstreet_Pro_AngularJS
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angularjslocal_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angularjslocal_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angularjslocal_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angularjslocal_enabled]", [
             "label" => esc_html__("Enable AngularJS Locale", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angularjslocal]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angularjslocal]", [
             "default" => strtolower(get_locale()),
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angularjslocal]", [
+
+        $wp_customize->add_control($this->theme_options_name . "[angularjslocal]", [
             "label" => esc_html__("Language", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "text",
             "priority" => 100,
         ]);
 
-
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_animate_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_animate_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_animate_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_animate_enabled]", [
             "label" => esc_html__("Enable AngularJS Animate", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_aria_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_aria_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_aria_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_aria_enabled]", [
             "label" => esc_html__("Enable AngularJS Aria", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_cookies_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_cookies_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_cookies_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_cookies_enabled]", [
             "label" => esc_html__("Enable AngularJS Cookies", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_loader_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_loader_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_loader_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_loader_enabled]", [
             "label" => esc_html__("Enable AngularJS Loader", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_messages_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_messages_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_messages_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_messages_enabled]", [
             "label" => esc_html__("Enable AngularJS Message", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_message_format_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_message_format_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_message_format_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_message_format_enabled]", [
             "label" => esc_html__("Enable AngularJS Messageformat", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_mocks_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_mocks_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_mocks_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_mocks_enabled]", [
             "label" => esc_html__("Enable AngularJS Mocks", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
@@ -263,70 +218,70 @@ class Customizer_Wallstreet_Pro_AngularJS
         ]);
 
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_parse_ext_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_parse_ext_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_parse_ext_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_parse_ext_enabled]", [
             "label" => esc_html__("Enable AngularJS Parse Extension", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_resource_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_resource_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_resource_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_resource_enabled]", [
             "label" => esc_html__("Enable AngularJS Resource", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_route_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_route_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_route_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_route_enabled]", [
             "label" => esc_html__("Enable AngularJS Route", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_sanitize_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_sanitize_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_sanitize_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_sanitize_enabled]", [
             "label" => esc_html__("Enable AngularJS Sanitize", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_scenario_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_scenario_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_scenario_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_scenario_enabled]", [
             "label" => esc_html__("Enable AngularJS Scenario", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
@@ -334,32 +289,77 @@ class Customizer_Wallstreet_Pro_AngularJS
             "description" => esc_html__("Only in Version 1.2.32", DJS_ANGULARJS_PLUGIN),
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_touch_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_touch_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_touch_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_touch_enabled]", [
             "label" => esc_html__("Enable AngularJS Touch", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
         ]);
 
-        $wp_customize->add_setting("wallstreet_pro_angularjs_options[angular_uibootstrap_enabled]", [
+        $wp_customize->add_setting($this->theme_options_name . "[angular_uibootstrap_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
             "sanitize_callback" => "sanitize_text_field",
             "type" => "option",
         ]);
 
-        $wp_customize->add_control("wallstreet_pro_angularjs_options[angular_uibootstrap_enabled]", [
+        $wp_customize->add_control($this->theme_options_name . "[angular_uibootstrap_enabled]", [
             "label" => esc_html__("Enable AngularJS UI Bootstrap", DJS_ANGULARJS_PLUGIN),
             "section" => "angular_section_settings",
             "type" => "checkbox",
             "priority" => 100,
+        ]);
+    }
+    
+    public function register_colorpickercontrols($wp_customize) {
+        $wp_customize->add_setting($this->theme_options_name . "[customcolor_enabled]", [
+            "default" => "#cccccc",
+            "capability" => "edit_theme_options",
+            "sanitize_callback" => "sanitize_text_field",
+            "type" => "option",
+        ]);
+
+        $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, $this->theme_options_name . "[customcolor_enabled]", [
+            'label' => esc_html__('Fixed Home Widget Background', DJS_ANGULARJS_PLUGIN),
+            'section' => 'colors',
+            'settings' => 'wallstreet_pro_angularjs_options[customcolor_enabled]'
+        ]));
+
+        $wp_customize->add_setting($this->theme_options_name . "[customtextcolor_enabled]", [
+            "default" => "#ffffff",
+            "capability" => "edit_theme_options",
+            "sanitize_callback" => "sanitize_text_field",
+            "type" => "option",
+        ]);
+
+        $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, $this->theme_options_name . "[customtextcolor_enabled]", [
+            'label' => esc_html__('Fixed Home Widget Textcolor', DJS_ANGULARJS_PLUGIN),
+            'section' => 'colors',
+            'settings' => 'wallstreet_pro_angularjs_options[customtextcolor_enabled]'
+        ]));
+    }
+
+    public function register_symolicfontcontrols($wp_customize) {
+        $wp_customize->add_setting($this->theme_options_name . "[symbolfonts_enabled]", [
+            "default" => $this->is_djs_wallstreet_pro_theme,
+            "capability" => "edit_theme_options",
+            "sanitize_callback" => "sanitize_text_field",
+            "type" => "option",
+        ]);
+
+        $wp_customize->add_control($this->theme_options_name . "[symbolfonts_enabled]", [
+            "label" => esc_html__("Load symbolic fonts", DJS_ANGULARJS_PLUGIN),
+            "section" => "angularfont_section_settings",
+            "type" => "checkbox",
+            "priority" => 100,
+            "description" => esc_html__("enable if some icons are not displayed", DJS_ANGULARJS_PLUGIN),
         ]);
     }
 }
