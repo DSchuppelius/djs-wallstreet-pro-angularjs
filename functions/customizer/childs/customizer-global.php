@@ -61,7 +61,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angularjs_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -94,7 +94,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angularjslocal_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -122,7 +122,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_animate_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -136,7 +136,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_aria_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -150,7 +150,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_cookies_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -164,7 +164,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_loader_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -178,7 +178,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_messages_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -192,7 +192,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_message_format_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -206,7 +206,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_mocks_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -221,7 +221,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_parse_ext_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -235,7 +235,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_resource_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -249,7 +249,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_route_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -263,7 +263,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_sanitize_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -277,7 +277,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_scenario_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -292,7 +292,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_touch_enabled]", [
             "default" => false,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -306,7 +306,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[angular_uibootstrap_enabled]", [
             "default" => true,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 
@@ -350,7 +350,7 @@ class Customizer_Wallstreet_Pro_AngularJS extends Theme_Customizer {
         $wp_customize->add_setting($this->theme_options_name . "[symbolfonts_enabled]", [
             "default" => $this->is_djs_wallstreet_pro_theme,
             "capability" => "edit_theme_options",
-            "sanitize_callback" => "sanitize_text_field",
+            "sanitize_callback" => "sanitize_boolean_field",
             "type" => "option",
         ]);
 

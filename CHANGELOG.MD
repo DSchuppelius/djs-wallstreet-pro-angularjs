@@ -4,6 +4,8 @@
     1. Change design of main class
     2. Add symbolic fonts (localy stored)
     3. Add color settings for widget-area
+    4. Change Configuration Classes
+    5. Add some sanitizers
 #### Version 1.2.2:
     1. Fix loading styles and scripts
 #### Version 1.2.1:

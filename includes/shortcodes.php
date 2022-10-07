@@ -9,8 +9,7 @@
  */
 
 // The [ng-app name="my-app" class="class"] shortcode
-function angluarapp_div($atts, $content = null)
-{
+function angluarapp_div($atts, $content = null) {
     extract(shortcode_atts([
         'name'  => 'my-app',
         'class' => 'ng-scope',
@@ -30,29 +29,26 @@ function angluarapp_div($atts, $content = null)
 add_shortcode('ng-app', 'angluarapp_div');
 
 // The [ng-locale-load locale="en-us"] shortcode
-function angluarapp_load_locale($atts)
-{
-    $current_options = get_current_angularjs_options();
+function angluarapp_load_locale($atts) {
+    $current_setup = AangularJS_Plugin_Setup::instance();
     extract(shortcode_atts([
         'locale'  => 'en-us',
     ], $atts));
-    if (!empty($locale) && file_exists(DJS_ANGULARJS_PLUGIN_ASSETS_PATH . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . $locale . ".js")) {
-        wp_enqueue_script("angularjs-locale-shortcode", DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_options["angularjs_version"] . "/i18n/angular-locale_" . $locale . ".js");
+    if (!empty($locale) && file_exists(DJS_ANGULARJS_PLUGIN_ASSETS_PATH . "/js/angularjs/" . $current_setup->get("angularjs_version") . "/i18n/angular-locale_" . $locale . ".js")) {
+        wp_enqueue_script("angularjs-locale-shortcode", DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "/js/angularjs/" . $current_setup->get("angularjs_version") . "/i18n/angular-locale_" . $locale . ".js");
     }
 }
 add_shortcode('ng-locale-load', 'angluarapp_load_locale');
 
 
 // The [ng-app-end] shortcode
-function angluarapp_end_div()
-{
+function angluarapp_end_div() {
     return '</div>';
 }
 add_shortcode('ng-app-end', 'angluarapp_end_div');
 
 // The [ng-form controller="my-controller" class="class"] shortcode
-function angluarapp_form($atts, $content = null)
-{
+function angluarapp_form($atts, $content = null) {
     extract(shortcode_atts([
         'controller'    => 'my-controller',
         'name'          => 'my-form',
@@ -74,8 +70,7 @@ function angluarapp_form($atts, $content = null)
 add_shortcode('ng-form', 'angluarapp_form');
 
 // The [ng-form-end] shortcode
-function angluarapp_end_form()
-{
+function angluarapp_end_form() {
     return '</form>';
 }
 add_shortcode('ng-form-end', 'angluarapp_end_form');
