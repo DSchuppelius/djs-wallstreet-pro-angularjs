@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: DJS-Wallstreet-Pro AngularJS\n"
-"POT-Creation-Date: 2022-10-01 08:43+0200\n"
+"POT-Creation-Date: 2022-10-07 17:21+0200\n"
 "PO-Revision-Date: 2022-09-30 08:21+0200\n"
 "Last-Translator: Daniel Jörg Schuppelius <info@schuppelius.org>\n"
 "Language-Team: Daniel Jörg Schuppelius <info@schuppelius.org>\n"
@@ -21,8 +21,14 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#: angular.php:69 angular.php:74
+#: angular.php:72 angular.php:77 functions/plugin/plugin_setup.php:32
+#: functions/plugin/plugin_setup.php:37
 msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: angular.php:116
+#, php-format
+msgid "Could not find language file %s/%s-%s.mo."
 msgstr ""
 
 #: functions.php:19
@@ -30,124 +36,119 @@ msgstr ""
 msgid "%s detected a conflict; please deactivate the plugin located in %s."
 msgstr ""
 
-#: functions.php:33
-#, php-format
-msgid "Could not find language file %s/%s-%s.mo."
-msgstr ""
-
-#: functions/customizer/customizer-global.php:33
-#: functions/customizer/customizer-global.php:41
-#: functions/customizer/customizer-global.php:47
+#: functions/customizer/childs/customizer-global.php:24
+#: functions/customizer/childs/customizer-global.php:32
+#: functions/customizer/childs/customizer-global.php:38
 msgid "AngularJS options"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:53
+#: functions/customizer/childs/customizer-global.php:44
 msgid "Font settings"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:69
-msgid "Fixed Home Widget Background"
-msgstr ""
-
-#: functions/customizer/customizer-global.php:82
-msgid "Fixed Home Widget Textcolor"
-msgstr ""
-
-#: functions/customizer/customizer-global.php:97
-msgid "Load symbolic fonts"
-msgstr ""
-
-#: functions/customizer/customizer-global.php:101
-msgid "enable if some icons are not displayed"
-msgstr ""
-
-#: functions/customizer/customizer-global.php:114
+#: functions/customizer/childs/customizer-global.php:69
 msgid "Enable AngularJS"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:118
+#: functions/customizer/childs/customizer-global.php:73
 msgid ""
 "If enabled the following and enabled features are also taken into account"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:129
+#: functions/customizer/childs/customizer-global.php:84
 msgid "Select version of AngularJS"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:133
+#: functions/customizer/childs/customizer-global.php:88
 msgid "Version 1.2.32"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:134
+#: functions/customizer/childs/customizer-global.php:89
 msgid "Version 1.8.2"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:147
+#: functions/customizer/childs/customizer-global.php:102
 msgid "Enable AngularJS Locale"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:160
+#: functions/customizer/childs/customizer-global.php:116
 msgid "Language"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:175
+#: functions/customizer/childs/customizer-global.php:130
 msgid "Enable AngularJS Animate"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:189
+#: functions/customizer/childs/customizer-global.php:144
 msgid "Enable AngularJS Aria"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:203
+#: functions/customizer/childs/customizer-global.php:158
 msgid "Enable AngularJS Cookies"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:217
+#: functions/customizer/childs/customizer-global.php:172
 msgid "Enable AngularJS Loader"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:231
+#: functions/customizer/childs/customizer-global.php:186
 msgid "Enable AngularJS Message"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:245
+#: functions/customizer/childs/customizer-global.php:200
 msgid "Enable AngularJS Messageformat"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:259
+#: functions/customizer/childs/customizer-global.php:214
 msgid "Enable AngularJS Mocks"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:274
+#: functions/customizer/childs/customizer-global.php:229
 msgid "Enable AngularJS Parse Extension"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:288
+#: functions/customizer/childs/customizer-global.php:243
 msgid "Enable AngularJS Resource"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:302
+#: functions/customizer/childs/customizer-global.php:257
 msgid "Enable AngularJS Route"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:316
+#: functions/customizer/childs/customizer-global.php:271
 msgid "Enable AngularJS Sanitize"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:330
+#: functions/customizer/childs/customizer-global.php:285
 msgid "Enable AngularJS Scenario"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:334
+#: functions/customizer/childs/customizer-global.php:289
 msgid "Only in Version 1.2.32"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:345
+#: functions/customizer/childs/customizer-global.php:300
 msgid "Enable AngularJS Touch"
 msgstr ""
 
-#: functions/customizer/customizer-global.php:359
+#: functions/customizer/childs/customizer-global.php:314
 msgid "Enable AngularJS UI Bootstrap"
+msgstr ""
+
+#: functions/customizer/childs/customizer-global.php:330
+msgid "Fixed Home Widget Background"
+msgstr ""
+
+#: functions/customizer/childs/customizer-global.php:343
+msgid "Fixed Home Widget Textcolor"
+msgstr ""
+
+#: functions/customizer/childs/customizer-global.php:358
+msgid "Load symbolic fonts"
+msgstr ""
+
+#: functions/customizer/childs/customizer-global.php:362
+msgid "enable if some icons are not displayed"
 msgstr ""
 
 #: includes/widget-areas.php:14

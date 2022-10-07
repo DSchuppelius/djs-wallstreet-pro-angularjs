@@ -8,8 +8,7 @@
  * License Uri  : http://www.gnu.org/licenses/gpl.html
  */
 
-function wallstreet_angularjs_widgets_init()
-{
+function wallstreet_angularjs_widgets_init() {
     register_sidebar([
         'name'          => __('Home right fixed-sidebar','wallstreet-angularjs'),
         'id'            => 'home_right_fixed',
@@ -29,13 +28,11 @@ function wallstreet_angularjs_widgets_init()
 }
 add_action('widgets_init', 'wallstreet_angularjs_widgets_init');
 
-class Fixed_Widget_Areas
-{
+class Fixed_Widget_Areas {
     private bool $left_enabled;
     private bool $right_enabled;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->right_enabled = is_active_sidebar('home_right_fixed');
         $this->left_enabled = is_active_sidebar('home_left_fixed');
     }
