@@ -17,7 +17,6 @@ class AangularJS_Plugin_Setup extends Plugin_Setup {
         // Only run these methods if they haven't been ran previously
         if (null === $instance) {
             $instance = new AangularJS_Plugin_Setup();
-            $instance->setup_data();
             $instance->load_current_setup();
         }
 
@@ -25,8 +24,8 @@ class AangularJS_Plugin_Setup extends Plugin_Setup {
         return $instance;
     }
 
-    protected function setup_data() {
-        $this->data = [
+    protected function get_initial_setup() {
+        return [
             "customcolor_enabled" => "#cccccc",
             "customtextcolor_enabled" => "#ffffff",
             "symbolfonts_enabled" => false,

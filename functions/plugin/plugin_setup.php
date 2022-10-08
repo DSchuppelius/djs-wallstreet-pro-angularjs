@@ -14,6 +14,10 @@ if(!class_exists('Plugin_Setup')) {
 
         public function get($key) {
             $result = null;
+            
+            if (array_diff($this->data, $this->get_initial_setup()) != []) {
+                $this->load_current_setup();
+            }
 
             if (array_key_exists($key, $this->current_data)) {
                 if(is_bool($this->__get($key))) {
@@ -28,7 +32,11 @@ if(!class_exists('Plugin_Setup')) {
             return $result;
         }
 
+        // @return initial_setup|null
+        abstract protected function get_initial_setup();
+
         protected function load_current_setup() {
+            $this->data = $this->get_initial_setup();
             $this->current_data = $this->get_current_setup();
         }
 
