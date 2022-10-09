@@ -47,7 +47,7 @@ if (!class_exists('DJS_Wallstreet_Pro_AngularJS')) {
             if(defined('WP_DEBUG'))
                 if (!$result && WP_DEBUG)
                     add_action('admin_notices', function() use ($path) {
-                        $locale = apply_filters('plugin_locale', get_locale(), DJS_POSTTYPE_PLUGIN);
+                        $locale = apply_filters('plugin_locale', get_locale(), $this->plugin_name);
                     
                         echo "<div class='notice'><p>" . sprintf(esc_html__("Could not find language file %s/%s-%s.mo.", $this->plugin_name), $path, $this->plugin_name, $locale) . "</p></div>";
                     });
