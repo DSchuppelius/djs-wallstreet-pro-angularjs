@@ -32,7 +32,7 @@ if (!class_exists('DJS_Wallstreet_Pro_AngularJS')) {
                 $instance->includes();
                 $instance->setup_actions();
 
-                add_action('init', [$instance, 'load_textdomain']);
+                add_action('plugins_loaded', [$instance, 'load_textdomain']);
             }
 
             // Always return the instance
@@ -41,7 +41,7 @@ if (!class_exists('DJS_Wallstreet_Pro_AngularJS')) {
 
         // Load plugin textdomain.
         public function load_textdomain() {
-            $path = $this->plugin_name ."/functions/lang";
+            $path = basename(dirname(__FILE__ )) . "/functions/lang";
             $result = load_plugin_textdomain($this->plugin_name, false, $path);
 
             if(defined('WP_DEBUG'))
