@@ -17,7 +17,7 @@ defined('ABSPATH') or die('Hm, Are you ok?');
 require_once "functions.php";
 
 if (!class_exists('DJS_Wallstreet_Pro_AngularJS')) {
-    final class DJS_Wallstreet_Pro_AngularJS extends Plugin_Base {
+    final class DJS_Wallstreet_Pro_AngularJS extends DJS_Base {
         private $customizers;
 
         // @return plugin|null
