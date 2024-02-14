@@ -25,7 +25,7 @@ require_once(DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "plugin/plugin_setup.php");
 require_once(DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "plugin/plugin_sanitizer.php");
 
 require_once(DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "customizer/plugin_customizer.php");
-require_once(DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "customizer/childs/customizer-global.php");
+require_once(DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "customizer/childs/plugin_customizer-global.php");
 
 require_once(DJS_ANGULARJS_PLUGIN_FUNCTIONS_PATH . "scripts.php");
 ?>
