@@ -10,8 +10,6 @@
 
 if (!defined('ABSPATH')) exit;
 
-require_once "djs_setup.php";
-
 if(!class_exists('Plugin_Setup')) {
     abstract class Plugin_Setup extends DJS_Setup {
         // A dummy magic method to prevent plugin from being cloned
