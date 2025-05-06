@@ -10,7 +10,7 @@ Author URI: https://schuppelius.org
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl.html
 Text Domain: djs-wallstreet-pro-angularjs
-Domain Path: /functions/lang/
+Domain Path: /languages/
 Requires Plugins: djs-wallstreet-pro-core
 */
 defined('ABSPATH') or die('Hm, Are you ok?');
@@ -19,25 +19,24 @@ require_once "functions.php";
 
 if (!class_exists('DJS_Wallstreet_Pro_AngularJS') && class_exists('DJS_Base')) {
     final class DJS_Wallstreet_Pro_AngularJS extends DJS_Base {
+        private static $instance = null;
+
         private $customizers;
 
         // @return plugin|null
         public static function instance() {
-            // Store the instance locally to avoid private static replication
-            static $instance = null;
-
             // Only run these methods if they haven't been ran previously
-            if (null === $instance) {
-                $instance = new DJS_Wallstreet_Pro_AngularJS();
-                $instance->setup_globals();
-                $instance->includes();
-                $instance->setup_actions();
+            if (null === static::$instance) {
+                static::$instance = new DJS_Wallstreet_Pro_AngularJS();
+                static::$instance->setup_globals();
+                static::$instance->includes();
+                static::$instance->setup_actions();
 
-                add_action('plugins_loaded', [$instance, 'load_plugin_textdomain']);
+                add_action('plugins_loaded', [static::$instance, 'load_plugin_textdomain']);
             }
 
             // Always return the instance
-            return $instance;
+            return static::$instance;
         }
 
         protected function setup_globals() {
