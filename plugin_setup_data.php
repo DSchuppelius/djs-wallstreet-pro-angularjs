@@ -24,6 +24,8 @@ class AangularJS_Plugin_Setup extends Plugin_Setup {
         return $instance;
     }
 
+    protected function get_translated_setup() { return []; }
+
     protected function get_initial_setup() {
         return [
             "customcolor_enabled" => "#cccccc",
