@@ -48,7 +48,7 @@ function angularjs_plugin_scripts() {
             "angularjs-sanitize"       => ["file" => "angular-sanitize.min.js",       "condition" => $setup->get("angular_sanitize_enabled")],
             "angularjs-scenario"       => ["file" => "../1.2.32/angular-scenario.js", "condition" => $setup->get("angular_scenario_enabled")],
             "angularjs-touch"          => ["file" => "angular-touch.min.js",          "condition" => $setup->get("angular_touch_enabled")],
-            "angularjs-uibootstrap"    => ["file" => "ui-bootstrap-tpls-2.5.0.min.js","condition" => $setup->get("angular_uibootstrap_enabled")],
+            "angularjs-uibootstrap"    => ["file" => "../ui-bootstrap-tpls-2.5.0.min.js","condition" => $setup->get("angular_uibootstrap_enabled")],
         ];
 
         foreach ($scripts as $handle => $daten) {
@@ -65,7 +65,41 @@ function angularjs_plugin_scripts() {
         }
     }
 }
-add_action('wp_enqueue_scripts', 'angularjs_plugin_scripts');
+add_action('wp_enqueue_scripts', 'angularjs_plugin_scripts', 4);
+
+function override_angularjs_scripts_for_shortcode() {
+    global $post;
+
+    if (!is_a($post, 'WP_Post')) {
+        return;
+    }
+
+    $setup     = AangularJS_Plugin_Setup::instance();
+    $version   = $setup->get("angularjs_version");
+    $base_uri  = DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $version . "/";
+    $base_path = DJS_ANGULARJS_PLUGIN_ASSETS_PATH     . "js/angularjs/" . $version . "/";
+
+    $has_ng_app    = has_shortcode($post->post_content, 'ng-app');
+    $has_ng_locale = has_shortcode($post->post_content, 'ng-locale-load');
+
+    if ($has_ng_app) {
+        // AngularJS Hauptdatei ersetzen ohne defer, im HEAD
+        wp_deregister_script('angularjs');
+        wp_enqueue_script('angularjs', $base_uri . 'angular.min.js', [], null, false); // in_header, no defer
+    }
+
+    if ($has_ng_locale && $setup->get("angularjslocal_enabled")) {
+        $locale     = strtolower(str_replace('_', '-', $setup->get("angularjslocal")));
+        $localeFile = "i18n/angular-locale_{$locale}.js";
+
+        if (file_exists($base_path . $localeFile)) {
+            wp_deregister_script('angularjs-locale');
+            wp_enqueue_script('angularjs-locale', $base_uri . $localeFile, ['angularjs'], null, false);
+        }
+    }
+}
+add_action('wp_enqueue_scripts', 'override_angularjs_scripts_for_shortcode', 5);
+
 
 function widget_colorsettings() {
     $current_setup = AangularJS_Plugin_Setup::instance(); ?>
