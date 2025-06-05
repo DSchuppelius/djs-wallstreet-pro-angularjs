@@ -25,76 +25,74 @@ function angularjs_plugin_styles() {
 add_action('wp_enqueue_scripts', 'angularjs_plugin_styles');
 
 function angularjs_plugin_scripts() {
-    $current_setup = AangularJS_Plugin_Setup::instance();
+    $setup = AangularJS_Plugin_Setup::instance();
 
-    if (!(defined("WP_ADMIN") && WP_ADMIN) && $current_setup->get("angularjs_enabled")) {
-        wp_enqueue_script("angularjs",                      DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular.min.js");
-        if ($current_setup->get("angularjslocal_enabled") && file_exists(DJS_ANGULARJS_PLUGIN_ASSETS_PATH . "js/angularjs/" . $current_setup->get("angularjs_version") . "/i18n/angular-locale_" . str_replace("_", "-", $current_setup->get("angularjslocal")) . ".js")) {
-            wp_enqueue_script("angularjs-locale",           DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/i18n/angular-locale_" . str_replace("_", "-", $current_setup->get("angularjslocal")) . ".js");
-        }
-        if ($current_setup->get("angular_animate_enabled")) {
-            wp_enqueue_script("angularjs-animate",          DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-animate.min.js");
-        }
-        if ($current_setup->get("angular_aria_enabled")) {
-            wp_enqueue_script("angularjs-aria",             DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-aria.min.js");
-        }
-        if ($current_setup->get("angular_cookies_enabled")) {
-            wp_enqueue_script("angularjs-cookies",          DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-cookies.min.js");
-        }
-        if ($current_setup->get("angular_loader_enabled")) {
-            wp_enqueue_script("angularjs-loader",           DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-loader.min.js");
-        }
-        if ($current_setup->get("angular_messages_enabled")) {
-            wp_enqueue_script("angularjs-messages",         DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-messages.min.js");
-        }
-        if ($current_setup->get("angular_message_format_enabled")) {
-            wp_enqueue_script("angularjs-message-format",   DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-message-format.min.js");
-        }
-        if ($current_setup->get("angular_mocks_enabled")) {
-            wp_enqueue_script("angularjs-mocks",            DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-mocks.js");
-        }
-        if ($current_setup->get("angular_parse_ext_enabled")) {
-            wp_enqueue_script("angularjs-parse-ext",        DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-parse-ext.min.js");
-        }
-        if ($current_setup->get("angular_resource_enabled")) {
-            wp_enqueue_script("angularjs-resource",         DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-resource.min.js");
-        }
-        if ($current_setup->get("angular_route_enabled")) {
-            wp_enqueue_script("angularjs-route",            DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-route.min.js");
-        }
-        if ($current_setup->get("angular_sanitize_enabled")) {
-            wp_enqueue_script("angularjs-sanitize",         DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-sanitize.min.js");
-        }
-        if ($current_setup->get("angular_scenario_enabled")) {
-            wp_enqueue_script("angularjs-scenario",         DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/1.2.32/angular-scenario.js");
-        }
-        if ($current_setup->get("angular_touch_enabled")) {
-            wp_enqueue_script("angularjs-touch",            DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $current_setup->get("angularjs_version") . "/angular-touch.min.js");
-        }
-        if ($current_setup->get("angular_uibootstrap_enabled")) {
-            wp_enqueue_script("angularjs-uibootstrap",      DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/ui-bootstrap-tpls-2.5.0.min.js");
+    if (!(defined("WP_ADMIN") && WP_ADMIN) && $setup->get("angularjs_enabled")) {
+        $version  = $setup->get("angularjs_version");
+        $base_uri = DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $version . "/";
+        $base_path = DJS_ANGULARJS_PLUGIN_ASSETS_PATH . "js/angularjs/" . $version . "/";
+
+        $scripts = [
+            "angularjs"                 => ["file" => "angular.min.js"],
+            "angularjs-locale"         => ["file" => "i18n/angular-locale_" . str_replace("_", "-", $setup->get("angularjslocal")) . ".js", "condition" => $setup->get("angularjslocal_enabled")],
+            "angularjs-animate"        => ["file" => "angular-animate.min.js",        "condition" => $setup->get("angular_animate_enabled")],
+            "angularjs-aria"           => ["file" => "angular-aria.min.js",           "condition" => $setup->get("angular_aria_enabled")],
+            "angularjs-cookies"        => ["file" => "angular-cookies.min.js",        "condition" => $setup->get("angular_cookies_enabled")],
+            "angularjs-loader"         => ["file" => "angular-loader.min.js",         "condition" => $setup->get("angular_loader_enabled")],
+            "angularjs-messages"       => ["file" => "angular-messages.min.js",       "condition" => $setup->get("angular_messages_enabled")],
+            "angularjs-message-format" => ["file" => "angular-message-format.min.js", "condition" => $setup->get("angular_message_format_enabled")],
+            "angularjs-mocks"          => ["file" => "angular-mocks.js",              "condition" => $setup->get("angular_mocks_enabled")],
+            "angularjs-parse-ext"      => ["file" => "angular-parse-ext.min.js",      "condition" => $setup->get("angular_parse_ext_enabled")],
+            "angularjs-resource"       => ["file" => "angular-resource.min.js",       "condition" => $setup->get("angular_resource_enabled")],
+            "angularjs-route"          => ["file" => "angular-route.min.js",          "condition" => $setup->get("angular_route_enabled")],
+            "angularjs-sanitize"       => ["file" => "angular-sanitize.min.js",       "condition" => $setup->get("angular_sanitize_enabled")],
+            "angularjs-scenario"       => ["file" => "../1.2.32/angular-scenario.js", "condition" => $setup->get("angular_scenario_enabled")],
+            "angularjs-touch"          => ["file" => "angular-touch.min.js",          "condition" => $setup->get("angular_touch_enabled")],
+            "angularjs-uibootstrap"    => ["file" => "ui-bootstrap-tpls-2.5.0.min.js","condition" => $setup->get("angular_uibootstrap_enabled")],
+        ];
+
+        foreach ($scripts as $handle => $daten) {
+            $condition = $daten['condition'] ?? true;
+            $file     = $daten['file'];
+
+            if ($condition) {
+                if ($handle === 'angularjs-locale' && !file_exists($base_path . $file)) {
+                    continue;
+                }
+
+                wp_enqueue_script($handle, $base_uri . $file, [], null, ['strategy' => 'defer', 'in_footer' => true]);
+            }
         }
     }
 }
 add_action('wp_enqueue_scripts', 'angularjs_plugin_scripts');
 
-
 function widget_colorsettings() {
     $current_setup = AangularJS_Plugin_Setup::instance(); ?>
-    <style>
-        <?php if ($current_setup->get("customcolor_enabled") != "#cccccc") { ?>
-            .wallstreet.fixed-widget {
-                background-color: <?php echo $current_setup->get("customcolor_enabled"); ?>;
-            }
-        <?php }
-        if ($current_setup->get("customtextcolor_enabled") != "#ffffff") { ?>
-            .wallstreet.fixed-widget,
-            .wallstreet.fixed-widget button,
-            .wallstreet.fixed-widget button:hover,
-            .wallstreet.fixed-widget > div a,
-            .wallstreet.fixed-widget > div a:hover {
-                color: <?php echo $current_setup->get("customtextcolor_enabled"); ?>;
-            }
-        <?php } ?>
-    </style>        
+<style>
+<?php if ($current_setup->get("customcolor_enabled") !="#cccccc") {
+    ?>.wallstreet.fixed-widget {
+        background-color: <?php echo $current_setup->get("customcolor_enabled");
+        ?>;
+    }
+
+    <?php
+}
+
+if ($current_setup->get("customtextcolor_enabled") !="#ffffff") {
+
+    ?>.wallstreet.fixed-widget,
+    .wallstreet.fixed-widget button,
+    .wallstreet.fixed-widget button:hover,
+    .wallstreet.fixed-widget>div a,
+    .wallstreet.fixed-widget>div a:hover {
+        color: <?php echo $current_setup->get("customtextcolor_enabled");
+        ?>;
+    }
+
+    <?php
+}
+
+?>
+</style>
 <?php } ?>
