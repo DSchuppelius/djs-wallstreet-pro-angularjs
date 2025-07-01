@@ -9,22 +9,16 @@
  */
 
 function wallstreet_angularjs_widgets_init() {
-    register_sidebar([
-        'name'          => __('Home right fixed-sidebar','wallstreet-angularjs'),
-        'id'            => 'home_right_fixed',
-        'before_widget' => '<div>',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="rounded">',
-        'after_title'   => '</h2>',
-    ]);
-    register_sidebar([
-        'name'          => __('Home left fixed-sidebar','wallstreet-angularjs'),
-        'id'            => 'home_left_fixed',
-        'before_widget' => '<div>',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h2 class="rounded">',
-        'after_title'   => '</h2>',
-    ]);
+    foreach ( [ 'right', 'left' ] as $pos ) {
+        register_sidebar([
+            'name'          => esc_html__( "Home {$pos} fixed-sidebar", 'wallstreet-angularjs' ),
+            'id'            => "home_{$pos}_fixed",
+            'before_widget' => '<div>',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h2 class="rounded">',
+            'after_title'   => '</h2>',
+        ]);
+    }
 }
 add_action('widgets_init', 'wallstreet_angularjs_widgets_init');
 
