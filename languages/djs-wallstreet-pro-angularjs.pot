@@ -176,3 +176,12 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "https://schuppelius.org"
 msgstr ""
+
+msgid "Load AngularJS on every page"
+msgstr ""
+
+msgid "By default AngularJS is only loaded on pages whose content or widgets use it."
+msgstr ""
+
+msgid "Toggle panel"
+msgstr ""

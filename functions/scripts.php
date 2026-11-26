@@ -24,10 +24,46 @@ function angularjs_plugin_styles() {
 }
 add_action('wp_enqueue_scripts', 'angularjs_plugin_styles');
 
+/**
+ * Braucht die aktuelle Seite AngularJS? Geladen wird es nur noch, wenn die angezeigten Beitraege
+ * oder ein Text-/HTML-/Block-Widget Angular-Markup enthalten ([ng-...]-Shortcodes, ng-Attribute) -
+ * oder ueberall, wenn "Load AngularJS on every page" gesetzt ist. Eigene Faelle (Templates,
+ * PHP-Widgets) meldet der Filter "djs_angularjs_needed".
+ */
+function djs_angularjs_needed(): bool {
+    static $needed = null;
+    if ($needed !== null) {
+        return $needed;
+    }
+
+    $setup  = AangularJS_Plugin_Setup::instance();
+    $needed = (bool) $setup->get("angularjs_always");
+
+    if (!$needed) {
+        global $wp_query;
+        $pattern = '/\\[ng-[a-z]|[\\s"\'](?:data-)?ng-[a-z-]+\\s*=/i';
+        $texts   = [];
+        foreach (($wp_query->posts ?? []) as $queried) {
+            $texts[] = (string) ($queried->post_content ?? "");
+        }
+        foreach (["widget_text", "widget_custom_html", "widget_block"] as $option) {
+            $texts[] = (string) maybe_serialize(get_option($option, []));
+        }
+        foreach ($texts as $text) {
+            if ($text !== "" && preg_match($pattern, $text)) {
+                $needed = true;
+                break;
+            }
+        }
+    }
+
+    return $needed = (bool) apply_filters("djs_angularjs_needed", $needed);
+}
+
 function angularjs_plugin_scripts() {
     $setup = AangularJS_Plugin_Setup::instance();
 
-    if (!(defined("WP_ADMIN") && WP_ADMIN) && $setup->get("angularjs_enabled")) {
+    if (!(defined("WP_ADMIN") && WP_ADMIN) && $setup->get("angularjs_enabled") && djs_angularjs_needed()) {
         $version  = $setup->get("angularjs_version");
         $base_uri = DJS_ANGULARJS_PLUGIN_ASSETS_PATH_URI . "js/angularjs/" . $version . "/";
         $base_path = DJS_ANGULARJS_PLUGIN_ASSETS_PATH . "js/angularjs/" . $version . "/";
@@ -70,7 +106,7 @@ add_action('wp_enqueue_scripts', 'angularjs_plugin_scripts', 4);
 function override_angularjs_scripts_for_shortcode() {
     global $post;
 
-    if (!is_a($post, 'WP_Post')) {
+    if (!is_a($post, 'WP_Post') || !djs_angularjs_needed()) {
         return;
     }
 

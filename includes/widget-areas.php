@@ -34,53 +34,39 @@ class Fixed_Widget_Areas {
     public function register() {
         if($this->right_enabled || $this->left_enabled) {
             add_action('wp_footer', [$this, 'load_home_widgets_fixed']);
-            add_action('wp_footer', [$this, 'inject_angular_widget_script'], 99);
+            add_action('wp_footer', [$this, 'inject_widget_script'], 99);
         }
     }
 
-    public function inject_angular_widget_script() { ?>
+    /**
+     * Auf/Zu-Schalter der Randleisten ohne AngularJS: frueher lud allein dafuer auf jeder Seite
+     * das ganze Framework. Der Zustand steht als Klasse .is-open im Markup (Startseite: offen),
+     * schmale Bildschirme (<= 1024px) starten per CSS geschlossen, bis jemand schaltet (.is-toggled).
+     */
+    public function inject_widget_script() { ?>
 <script>
-(function waitForAngular(retries) {
-    if (typeof angular === 'undefined') {
-        if (retries <= 0) {
-            console.error("AngularJS konnte nicht geladen werden.");
-            return;
-        }
-        return setTimeout(() => waitForAngular(retries - 1), 50);
-    }
-
-    function getWidth() {
-        return Math.max(
-            document.body.scrollWidth,
-            document.documentElement.scrollWidth,
-            document.body.offsetWidth,
-            document.documentElement.offsetWidth,
-            document.documentElement.clientWidth
-        );
-    }
-
-    const widgetModule = angular.module('angularJSHomeWidget', []);
-    widgetModule.controller('widgetController', function($scope) {
-        $scope.rcheck = <?php echo is_front_page() ? "true" : "false"; ?>;
-        $scope.lcheck = <?php echo is_front_page() ? "true" : "false"; ?>;
-
-        if (getWidth() <= 1024) {
-            $scope.rcheck = false;
-            $scope.lcheck = false;
-        }
+if (window.matchMedia("(max-width: 1024px)").matches) {
+    document.querySelectorAll(".fixed-widget.is-open [data-fixed-widget-toggle]").forEach(function (button) {
+        button.setAttribute("aria-expanded", "false");
     });
-
-    angular.element(function() {
-        angular.bootstrap(document.getElementById("angularJSHomeWidgetID"), ['angularJSHomeWidget']);
-    });
-})(20);
+}
+document.addEventListener("click", function (event) {
+    var button = event.target.closest ? event.target.closest("[data-fixed-widget-toggle]") : null;
+    if (!button) return;
+    var panel = button.closest(".fixed-widget");
+    if (!panel) return;
+    var narrowStart = !panel.classList.contains("is-toggled") && window.matchMedia("(max-width: 1024px)").matches;
+    var open = narrowStart ? true : !panel.classList.contains("is-open");
+    panel.classList.add("is-toggled");
+    panel.classList.toggle("is-open", open);
+    button.setAttribute("aria-expanded", String(open));
+});
 </script>
 <?php
     }
 
-    public function load_home_widgets_fixed() {
-        $show_widget = is_front_page() ? "true" : "false"; ?>
-<div id="angularJSHomeWidgetID" ng-controller="widgetController">
+    public function load_home_widgets_fixed() { ?>
+<div id="angularJSHomeWidgetID">
     <?php if ($this->right_enabled) {
                 $this->home_right_fixed();
             }
@@ -90,27 +76,25 @@ class Fixed_Widget_Areas {
 </div>
 <?php }
 
+    private function toggle_button() {
+        $open = is_front_page(); ?>
+    <button type="button" class="not" data-fixed-widget-toggle aria-expanded="<?php echo $open ? "true" : "false"; ?>" aria-label="<?php esc_attr_e("Toggle panel", DJS_ANGULARJS_PLUGIN); ?>">
+        <i class="material-icons fixed-widget__closed" aria-hidden="true">&#xE408;</i>
+        <i class="material-icons fixed-widget__opened" aria-hidden="true">&#xE409;</i>
+    </button>
+<?php }
+
     public function home_right_fixed() { ?>
-<div ng-style="!rcheck && {'right':'-175px'} || {'right':'-4px'}" class="wallstreet fixed-widget right">
-    <button ng-show="rcheck == false;" ng-click="rcheck = !rcheck" class="not">
-        <i class="material-icons"></i>
-    </button>
-    <button ng-show="rcheck == true" ng-click="rcheck = !rcheck" class="not">
-        <i class="material-icons"></i>
-    </button>
+<div class="wallstreet fixed-widget right<?php echo is_front_page() ? " is-open" : ""; ?>">
+    <?php $this->toggle_button(); ?>
     <?php dynamic_sidebar('home_right_fixed'); ?>
 </div>
 <?php }
 
     public function home_left_fixed() { ?>
-<div ng-style="!lcheck && {'left':'-175px'} || {'left':'-4px'}" class="wallstreet fixed-widget left">
+<div class="wallstreet fixed-widget left<?php echo is_front_page() ? " is-open" : ""; ?>">
     <?php dynamic_sidebar('home_left_fixed'); ?>
-    <button ng-show="lcheck == true;" ng-click="lcheck = !lcheck" class="not">
-        <i class="material-icons"></i>
-    </button>
-    <button ng-show="lcheck == false" ng-click="lcheck = !lcheck" class="not">
-        <i class="material-icons"></i>
-    </button>
+    <?php $this->toggle_button(); ?>
 </div>
 <?php }
 }

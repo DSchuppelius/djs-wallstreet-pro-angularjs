@@ -181,3 +181,12 @@ msgstr "Daniel Jörg Schuppelius"
 #. Author URI of the plugin/theme
 msgid "https://schuppelius.org"
 msgstr "https://schuppelius.org/"
+
+msgid "Load AngularJS on every page"
+msgstr "AngularJS auf jeder Seite laden"
+
+msgid "By default AngularJS is only loaded on pages whose content or widgets use it."
+msgstr "Standardmäßig wird AngularJS nur auf Seiten geladen, deren Inhalt oder Widgets es verwenden."
+
+msgid "Toggle panel"
+msgstr "Leiste ein- oder ausklappen"

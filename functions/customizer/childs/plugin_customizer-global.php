@@ -62,6 +62,21 @@ class Customizer_Wallstreet_Pro_AngularJS extends Plugin_Customizer {
             "description" => esc_html__("If enabled the following and enabled features are also taken into account", DJS_ANGULARJS_PLUGIN),
         ]);
 
+        $wp_customize->add_setting($this->theme_options_name . "[angularjs_always]", [
+            "default" => false,
+            "capability" => "edit_theme_options",
+            "sanitize_callback" => "sanitize_boolean_field",
+            "type" => "option",
+        ]);
+
+        $wp_customize->add_control($this->theme_options_name . "[angularjs_always]", [
+            "label" => esc_html__("Load AngularJS on every page", DJS_ANGULARJS_PLUGIN),
+            "section" => "angular_section_settings",
+            "type" => "checkbox",
+            "priority" => 100,
+            "description" => esc_html__("By default AngularJS is only loaded on pages whose content or widgets use it.", DJS_ANGULARJS_PLUGIN),
+        ]);
+
         $wp_customize->add_setting($this->theme_options_name . "[angularjs_version]", [
             "default" => '1.8.2',
             "capability" => "edit_theme_options",
