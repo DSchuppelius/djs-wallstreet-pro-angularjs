@@ -109,3 +109,47 @@
             .wallstreet.fixed-widget.left > div:hover {
                 box-shadow: inset 60px 75px 100px 10px rgb(0 0 0 / 25%)
             }
+
+/* Auf/Zu ohne AngularJS: .is-open faehrt die Leiste aus; schmale Bildschirme starten geschlossen,
+   bis geschaltet wurde (.is-toggled). Rechts zeigt der Pfeil zu = nach links, links umgekehrt. */
+.wallstreet.fixed-widget.right.is-open {
+    right: -4px
+}
+
+.wallstreet.fixed-widget.left.is-open {
+    left: -4px
+}
+
+@media (max-width: 1024px) {
+    .wallstreet.fixed-widget.right.is-open:not(.is-toggled) {
+        right: -175px
+    }
+
+    .wallstreet.fixed-widget.left.is-open:not(.is-toggled) {
+        left: -175px
+    }
+}
+
+.wallstreet.fixed-widget.right .fixed-widget__opened,
+.wallstreet.fixed-widget.right.is-open .fixed-widget__closed,
+.wallstreet.fixed-widget.left .fixed-widget__closed,
+.wallstreet.fixed-widget.left.is-open .fixed-widget__opened {
+    display: none
+}
+
+.wallstreet.fixed-widget.right.is-open .fixed-widget__opened,
+.wallstreet.fixed-widget.left.is-open .fixed-widget__closed {
+    display: flex
+}
+
+@media (max-width: 1024px) {
+    .wallstreet.fixed-widget.right.is-open:not(.is-toggled) .fixed-widget__opened,
+    .wallstreet.fixed-widget.left.is-open:not(.is-toggled) .fixed-widget__closed {
+        display: none
+    }
+
+    .wallstreet.fixed-widget.right.is-open:not(.is-toggled) .fixed-widget__closed,
+    .wallstreet.fixed-widget.left.is-open:not(.is-toggled) .fixed-widget__opened {
+        display: flex
+    }
+}

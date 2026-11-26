@@ -32,6 +32,7 @@ class AangularJS_Plugin_Setup extends Plugin_Setup {
             "customtextcolor_enabled" => "#ffffff",
             "symbolfonts_enabled" => false,
             "angularjs_enabled" => true,
+            "angularjs_always" => false,
             "angularjs_version" => "1.8.2",
             "angularjslocal_enabled" => true,
             "angularjslocal" => strtolower(get_locale()),
